@@ -1,0 +1,2 @@
+# shard-redis模式
+
