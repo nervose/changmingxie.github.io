@@ -51,7 +51,20 @@ export default {
         children: [
           {
             title: '快速开始',
-            link: '/zh-cn/docs/tutorial/quickstart.html',
+            children: [
+              {
+                title: '示例说明',
+                link: '/zh-cn/docs/tutorial/quickstart.html',
+              },
+              {
+                title: 'local模式演示',
+                link: '/zh-cn/docs/tutorial/quickstart/local-sample.html',
+              },
+              {
+                title: 'server模式演示',
+                link: '/zh-cn/docs/tutorial/quickstart/server-sample.html',
+              }
+            ],
           },
           {
             title: '参数配置',
@@ -65,32 +78,45 @@ export default {
             title: '存储模式',
             children: [
               {
-                title: 'remoting模式',
-                link: '/zh-cn/docs/tutorial/storage/remoting.html',
+                title: 'local模式',
+                link: '/zh-cn/docs/tutorial/storagemode/local.html',
               },
               {
-                title: 'redis模式',
-                link: '/zh-cn/docs/tutorial/storage/redis.html',
+                title: 'server模式',
+                link: '/zh-cn/docs/tutorial/storagemode/server.html',
+              }
+            ],
+          },
+          {
+            title: '存储类型',
+            children: [
+              {
+                title: 'remoting',
+                link: '/zh-cn/docs/tutorial/storagetype/remoting.html',
               },
               {
-                title: 'redis-cluster模式',
-                link: '/zh-cn/docs/tutorial/storage/redis-cluster.html',
+                title: 'redis',
+                link: '/zh-cn/docs/tutorial/storagetype/redis.html',
               },
               {
-                title: 'shard-redis模式',
-                link: '/zh-cn/docs/tutorial/storage/shard-redis.html',
+                title: 'redis-cluster',
+                link: '/zh-cn/docs/tutorial/storagetype/redis-cluster.html',
               },
               {
-                title: 'jdbc模式',
-                link: '/zh-cn/docs/tutorial/storage/jdbc.html',
+                title: 'shard-redis',
+                link: '/zh-cn/docs/tutorial/storagetype/shard-redis.html',
               },
               {
-                title: 'memory模式',
-                link: '/zh-cn/docs/tutorial/storage/memory.html',
+                title: 'jdbc',
+                link: '/zh-cn/docs/tutorial/storagetype/jdbc.html',
               },
               {
-                title: 'rocksdb模式',
-                link: '/zh-cn/docs/tutorial/storage/rocksdb.html',
+                title: 'memory',
+                link: '/zh-cn/docs/tutorial/storagetype/memory.html',
+              },
+              {
+                title: 'rocksdb',
+                link: '/zh-cn/docs/tutorial/storagetype/rocksdb.html',
               },
             ],
           },

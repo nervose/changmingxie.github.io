@@ -7,18 +7,21 @@ TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解�
 ![TCC调用](./img/tcc-invoke.webp)  
 
 ## 功能列表
-### TCC管理后台
+### tcc-dashboord
 - 登录
 - Domain管理
 - 事件管理
 - 任务管理(补偿)
 
-### TCC-SERVER
+### tcc-server
 - 事件补偿
 - 集中存储
 
 ### 支持事件存储方式
+#### server模式
 - remoting
+
+#### local模式
 - redis
 - shard-redis
 - redis-cluster
