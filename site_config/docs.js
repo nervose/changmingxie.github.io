@@ -54,6 +54,14 @@ export default {
             link: '/zh-cn/docs/tutorial/quickstart.html',
           },
           {
+            title: '参数配置',
+            link: '/zh-cn/docs/tutorial/configurations.html',
+          },
+          {
+            title: 'API支持',
+            link: '/zh-cn/docs/tutorial/api.html',
+          },
+          {
             title: '存储模式',
             children: [
               {
@@ -85,6 +93,48 @@ export default {
                 link: '/zh-cn/docs/tutorial/storage/rocksdb.html',
               },
             ],
+          },
+          {
+            title: 'RPC框架支持',
+            children: [
+              {
+                title: '说明',
+                link: '/zh-cn/docs/tutorial/rpc/index.html',
+              },
+              {
+                title: 'dubbo',
+                link: '/zh-cn/docs/tutorial/rpc/redis.html',
+              },
+              {
+                title: 'openfeign',
+                link: '/zh-cn/docs/tutorial/rpc/openfeign.html',
+              },
+              {
+                title: 'grpc',
+                link: '/zh-cn/docs/tutorial/rpc/grpc.html',
+              }
+            ],
+          },
+          {
+            title: '注册中心支持',
+            children: [
+              {
+                title: '说明',
+                link: '/zh-cn/docs/tutorial/registry/index.html',
+              },
+              {
+                title: 'direct',
+                link: '/zh-cn/docs/tutorial/registry/direct.html',
+              },
+              {
+                title: 'nacos',
+                link: '/zh-cn/docs/tutorial/registry/nacos.html',
+              },
+              {
+                title: 'zookeeper',
+                link: '/zh-cn/docs/tutorial/registry/zookeeper.html',
+              }
+            ],
           }
         ],
       },
@@ -96,8 +146,38 @@ export default {
             link: '/zh-cn/docs/ops/upgrade.html',
           },
           {
-            title: 'dashboard',
-            link: '/zh-cn/docs/ops/upgrade.html',
+            title: 'server部署',
+            children: [
+              {
+                title: '部署说明',
+                link: '/zh-cn/docs/ops/tccserver/index.html',
+              },
+              {
+                title: '单机部署',
+                link: '/zh-cn/docs/ops/tccserver/deploy-alone.html',
+              },
+              {
+                title: '集群部署',
+                link: '/zh-cn/docs/ops/tccserver/deploy-cluster.html',
+              },
+            ]
+          },
+          {
+            title: 'dashboad部署',
+            children: [
+              {
+                title: '部署说明',
+                link: '/zh-cn/docs/ops/dashboard/index.html',
+              },
+              {
+                title: 'local模式部署',
+                link: '/zh-cn/docs/ops/dashboard/deploy-local.html',
+              },
+              {
+                title: 'server模式部署',
+                link: '/zh-cn/docs/ops/dashboard/deploy-server.html',
+              },
+            ]
           },
         ],
       },
