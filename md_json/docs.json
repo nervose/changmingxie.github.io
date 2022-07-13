@@ -28,8 +28,33 @@
       "meta": {}
     },
     {
-      "filename": "dashboard.md",
-      "link": "/zh-cn/docs/ops/dashboard.html",
+      "filename": "deploy-local.md",
+      "link": "/zh-cn/docs/ops/dashboard/deploy-local.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy-server.md",
+      "link": "/zh-cn/docs/ops/dashboard/deploy-server.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/docs/ops/dashboard/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy-alone.md",
+      "link": "/zh-cn/docs/ops/tccserver/deploy-alone.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy-cluster.md",
+      "link": "/zh-cn/docs/ops/tccserver/deploy-cluster.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/docs/ops/tccserver/index.html",
       "meta": {}
     },
     {
@@ -43,8 +68,58 @@
       "meta": {}
     },
     {
+      "filename": "api.md",
+      "link": "/zh-cn/docs/tutorial/api.html",
+      "meta": {}
+    },
+    {
+      "filename": "configurations.md",
+      "link": "/zh-cn/docs/tutorial/configurations.html",
+      "meta": {}
+    },
+    {
       "filename": "quickstart.md",
       "link": "/zh-cn/docs/tutorial/quickstart.html",
+      "meta": {}
+    },
+    {
+      "filename": "direct.md",
+      "link": "/zh-cn/docs/tutorial/registry/direct.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/docs/tutorial/registry/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "nacos.md",
+      "link": "/zh-cn/docs/tutorial/registry/nacos.html",
+      "meta": {}
+    },
+    {
+      "filename": "zookeeper.md",
+      "link": "/zh-cn/docs/tutorial/registry/zookeeper.html",
+      "meta": {}
+    },
+    {
+      "filename": "dubbo.md",
+      "link": "/zh-cn/docs/tutorial/rpc/dubbo.html",
+      "meta": {}
+    },
+    {
+      "filename": "grpc.md",
+      "link": "/zh-cn/docs/tutorial/rpc/grpc.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/docs/tutorial/rpc/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "openfeign.md",
+      "link": "/zh-cn/docs/tutorial/rpc/openfeign.html",
       "meta": {}
     },
     {
