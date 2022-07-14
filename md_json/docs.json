@@ -78,6 +78,16 @@
       "meta": {}
     },
     {
+      "filename": "local-sample.md",
+      "link": "/zh-cn/docs/tutorial/quickstart/local-sample.html",
+      "meta": {}
+    },
+    {
+      "filename": "server-sample.md",
+      "link": "/zh-cn/docs/tutorial/quickstart/server-sample.html",
+      "meta": {}
+    },
+    {
       "filename": "quickstart.md",
       "link": "/zh-cn/docs/tutorial/quickstart.html",
       "meta": {}
@@ -123,38 +133,48 @@
       "meta": {}
     },
     {
+      "filename": "local.md",
+      "link": "/zh-cn/docs/tutorial/storagemode/local.html",
+      "meta": {}
+    },
+    {
+      "filename": "server.md",
+      "link": "/zh-cn/docs/tutorial/storagemode/server.html",
+      "meta": {}
+    },
+    {
       "filename": "jdbc.md",
-      "link": "/zh-cn/docs/tutorial/storage/jdbc.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/jdbc.html",
       "meta": {}
     },
     {
       "filename": "memory.md",
-      "link": "/zh-cn/docs/tutorial/storage/memory.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/memory.html",
       "meta": {}
     },
     {
       "filename": "redis-cluster.md",
-      "link": "/zh-cn/docs/tutorial/storage/redis-cluster.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/redis-cluster.html",
       "meta": {}
     },
     {
       "filename": "redis.md",
-      "link": "/zh-cn/docs/tutorial/storage/redis.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/redis.html",
       "meta": {}
     },
     {
       "filename": "remoting.md",
-      "link": "/zh-cn/docs/tutorial/storage/remoting.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/remoting.html",
       "meta": {}
     },
     {
       "filename": "rocksdb.md",
-      "link": "/zh-cn/docs/tutorial/storage/rocksdb.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/rocksdb.html",
       "meta": {}
     },
     {
       "filename": "shard-redis.md",
-      "link": "/zh-cn/docs/tutorial/storage/shard-redis.html",
+      "link": "/zh-cn/docs/tutorial/storagetype/shard-redis.html",
       "meta": {}
     },
     {
