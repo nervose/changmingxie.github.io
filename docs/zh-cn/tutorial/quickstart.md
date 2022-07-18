@@ -5,7 +5,7 @@
 用户购买商品的业务逻辑。整个业务逻辑由3个微服务提供支持：资金服务、红包服务、订单服务。 
     
 **执行流程**  
-try阶段正常，则执行confirm阶段, try阶段异常，则执行cancle阶段。  
+try阶段正常，则执行confirm阶段，try阶段异常，则执行cancle阶段。  
 - try阶段
 > 1、订单服务(订单状态为DRAFT)，调用资金服务下单，调用红包服务下单  
 > 2、资金服务生成订单并扣除资金账户余额  
@@ -85,8 +85,8 @@ public class PaymentServiceImpl {
 
 
 ## 示例演示
-[local模式演示](/zh-cn/docs/tutorial/quickstart/local-sample.html)  
-[server模式演示](/zh-cn/docs/tutorial/quickstart/server-sample.html)  
+[embedded模式示例](/zh-cn/docs/tutorial/quickstart/embedded-sample.html)  
+[server模式示例](/zh-cn/docs/tutorial/quickstart/server-sample.html)  
 
 
 

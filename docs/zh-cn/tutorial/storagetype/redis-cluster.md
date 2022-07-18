@@ -1,2 +1,2 @@
-# redis-cluster模式
+# redis-cluster存储类型
 

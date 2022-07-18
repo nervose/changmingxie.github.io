@@ -1,2 +1,2 @@
-# redis模式
+# redis存储类型
 

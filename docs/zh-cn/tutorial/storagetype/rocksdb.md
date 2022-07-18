@@ -1,2 +1,2 @@
-# rocksdb模式
+# rocksdb存储类型
 

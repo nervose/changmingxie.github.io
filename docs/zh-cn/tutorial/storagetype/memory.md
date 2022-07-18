@@ -1,2 +1,2 @@
-# memory模式
+# memory存储类型
 

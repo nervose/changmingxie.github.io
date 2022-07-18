@@ -1,6 +1,6 @@
 {
   "filename": "terminology.md",
-  "__html": "<h1 id=\"%E6%9C%AF%E8%AF%AD\">术语 <a class=\"header-anchor\" href=\"#%E6%9C%AF%E8%AF%AD\">#</a></h1>\n",
+  "__html": "<h1 id=\"%E6%9C%AF%E8%AF%AD\">术语 <a class=\"header-anchor\" href=\"#%E6%9C%AF%E8%AF%AD\">#</a></h1>\n<h2 id=\"domain\">domain <a class=\"header-anchor\" href=\"#domain\">#</a></h2>\n<p>domain要保证唯一性，一般与服务一一对应，主要用于对事件隔离。<br>\n<strong>注意事项：</strong></p>\n<ul>\n<li>要保证唯一性</li>\n<li>不能与现有domain具有包含关系，比如TCC:TRADE,TCC:TRADE-ORDER(此问题待修复)</li>\n</ul>\n",
   "link": "/zh-cn/docs/terminology.html",
   "meta": {}
 }

@@ -1,2 +1,2 @@
-# remoting模式
+# remoting存储类型
 

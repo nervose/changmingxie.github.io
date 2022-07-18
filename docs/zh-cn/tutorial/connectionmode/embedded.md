@@ -1,0 +1,1 @@
+# embedded模式

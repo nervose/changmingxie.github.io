@@ -1,0 +1,6 @@
+{
+  "filename": "index.md",
+  "__html": "<h1 id=\"server%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E\">server部署说明 <a class=\"header-anchor\" href=\"#server%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E\">#</a></h1>\n<p>server服务，是tcc-transaction-2.x版本新增功能，此服务实现了事件存储、补偿任务的集中管理。<br>\n从而简化了1.x中的存储和补偿任务的复杂配置。给开发者带来一种新的选择。</p>\n<p>server部署，可以分为两种方式：</p>\n<ul>\n<li><a href=\"/zh-cn/docs/ops/server/deploy-alone.html\">单机部署</a><br>\n使用测试环境，或者开发者快速体验。</li>\n<li><a href=\"/zh-cn/docs/ops/server/deploy-cluster.html\">集群部署</a><br>\n适用于生产环境，需要保证高可用。</li>\n</ul>\n",
+  "link": "/zh-cn/docs/ops/server/index.html",
+  "meta": {}
+}
