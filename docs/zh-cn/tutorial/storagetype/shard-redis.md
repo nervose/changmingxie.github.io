@@ -1,2 +1,2 @@
-# shard-redis模式
+# shard-redis存储类型
 

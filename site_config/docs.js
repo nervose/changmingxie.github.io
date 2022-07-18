@@ -33,7 +33,7 @@ export default {
         title: '概述',
         children: [
           {
-            title: 'TCC-TRANSACTION是什么?',
+            title: 'TCC-TRANSACTION是什么',
             link: '/zh-cn/docs/what-is-tcctransaction.html',
           },
           {
@@ -47,7 +47,7 @@ export default {
         ],
       },
       {
-        title: '使用手册',
+        title: '用户指南',
         children: [
           {
             title: '快速开始',
@@ -57,11 +57,11 @@ export default {
                 link: '/zh-cn/docs/tutorial/quickstart.html',
               },
               {
-                title: 'local模式演示',
+                title: 'embedded模式示例',
                 link: '/zh-cn/docs/tutorial/quickstart/local-sample.html',
               },
               {
-                title: 'server模式演示',
+                title: 'server模式示例',
                 link: '/zh-cn/docs/tutorial/quickstart/server-sample.html',
               }
             ],
@@ -75,15 +75,15 @@ export default {
             link: '/zh-cn/docs/tutorial/api.html',
           },
           {
-            title: '存储模式',
+            title: '连接模式',
             children: [
               {
-                title: 'local模式',
-                link: '/zh-cn/docs/tutorial/storagemode/local.html',
+                title: 'embedded模式',
+                link: '/zh-cn/docs/tutorial/connectionmode/embedded.html',
               },
               {
                 title: 'server模式',
-                link: '/zh-cn/docs/tutorial/storagemode/server.html',
+                link: '/zh-cn/docs/tutorial/connectionmode/server.html',
               }
             ],
           },
@@ -118,6 +118,23 @@ export default {
                 title: 'rocksdb',
                 link: '/zh-cn/docs/tutorial/storagetype/rocksdb.html',
               },
+              {
+                title: 'custom',
+                link: '/zh-cn/docs/tutorial/storagetype/custom.html',
+              },
+            ],
+          },
+          {
+            title: '事件序列化',
+            children: [
+              {
+                title: 'kryo',
+                link: '/zh-cn/docs/tutorial/serializer/kryo.html',
+              },
+              {
+                title: 'custom',
+                link: '/zh-cn/docs/tutorial/serializer/custom.html',
+              }
             ],
           },
           {
@@ -159,6 +176,10 @@ export default {
               {
                 title: 'zookeeper',
                 link: '/zh-cn/docs/tutorial/registry/zookeeper.html',
+              },
+              {
+                title: 'custom',
+                link: '/zh-cn/docs/tutorial/registry/custom.html',
               }
             ],
           }
@@ -176,34 +197,38 @@ export default {
             children: [
               {
                 title: '部署说明',
-                link: '/zh-cn/docs/ops/tccserver/index.html',
+                link: '/zh-cn/docs/ops/server/index.html',
               },
               {
                 title: '单机部署',
-                link: '/zh-cn/docs/ops/tccserver/deploy-alone.html',
+                link: '/zh-cn/docs/ops/server/deploy-alone.html',
               },
               {
                 title: '集群部署',
-                link: '/zh-cn/docs/ops/tccserver/deploy-cluster.html',
+                link: '/zh-cn/docs/ops/server/deploy-cluster.html',
               },
             ]
           },
           {
-            title: 'dashboad部署',
+            title: 'dashboard部署',
             children: [
               {
                 title: '部署说明',
                 link: '/zh-cn/docs/ops/dashboard/index.html',
               },
               {
-                title: 'local模式部署',
-                link: '/zh-cn/docs/ops/dashboard/deploy-local.html',
+                title: 'embedded模式部署',
+                link: '/zh-cn/docs/ops/dashboard/deploy-embedded.html',
               },
               {
                 title: 'server模式部署',
                 link: '/zh-cn/docs/ops/dashboard/deploy-server.html',
               },
             ]
+          },
+          {
+            title: 'dashboard使用手册',
+            link: '/zh-cn/docs/ops/dashboard/dashboard-guild.html',
           },
         ],
       },
