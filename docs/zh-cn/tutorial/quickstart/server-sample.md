@@ -1,6 +1,6 @@
 # server模式示例
-这里用http-sample来介绍如何使用tcc-transaction的[**server模式**](/zh-cn/docs/tutorial/storagemode/server.html)  
-示例工程:[tcc-transaction-http-sample](https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-http-sample) 
+这里用http-sample来介绍如何使用tcc-transaction的[**server模式**](/zh-cn/docs/tutorial/connectionmode/server.html)  
+**示例工程:**[tcc-transaction-http-sample](https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-http-sample) 
 > tcc-transaction-http-capital(资金服务)  
 > tcc-transaction-http-redpacket(红包服务)  
 > tcc-transaction-http-order(订单服务)   
@@ -10,7 +10,8 @@
 - springboot启动，application.yaml配置tcc  
 - 采用tcc-transaction的server模式
 
-架构图 TODO
+**示例图**  
+![server模式示例](../../img/sample_tcc_server.jpg)  
 
 以下将一步一步教大家如何使用tcc-transaction的server模式    
 **步骤如下**

@@ -62,7 +62,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    copyright: 'Copyright © 2022 TCC-TRANSACTION',
   },
   'zh-cn': {
     pageMenu: [
@@ -121,6 +121,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    copyright: 'Copyright © 2022 TCC-TRANSACTION',
   },
 };

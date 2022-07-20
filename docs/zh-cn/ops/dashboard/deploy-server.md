@@ -2,7 +2,7 @@
 存储模式为server模式，即通过调用server来实现存储操作。
 另外此模式支持任务管理，需要配置quartz cluster数据库链接
 ## 前置条件
-初始化[quartz数据库脚本](https://github.com/changmingxie/tcc-transaction/blob/master-2.x/tcc-transaction-server/src/main/dbscripts/db_init.sql)
+初始化[quartz数据库脚本](https://github.com/changmingxie/tcc-transaction/blob/master-2.x/tcc-transaction-server/src/main/dbscripts/db_init.sql)  
 [server部署](/zh-cn/docs/ops/tccserver/index.html)  
 
 ## 安装并部署
@@ -87,8 +87,8 @@ spring:
     dashboard:
       userName: admin
       password: 123456
-      data-fetch-type: tccserver
-      registry: # data-fetch-type为server时使用
+      connection-mode: server
+      registry: # connection-mode为server时使用
         registry-type: direct
         direct:
           server-addresses: http://localhost:12332
@@ -122,8 +122,8 @@ spring:
     dashboard:
       userName: admin
       password: 123456
-      data-fetch-type: tccserver
-      registry: # data-fetch-type为server时使用
+      connection-mode: server
+      registry: # connection-mode为server时使用
         registry-type: nacos
         nacos:
           server-addr: localhost:8848
@@ -157,8 +157,8 @@ spring:
     dashboard:
       userName: admin
       password: 123456
-      data-fetch-type: tccserver
-      registry: # data-fetch-type为server时使用
+      connection-mode: server
+      registry: # connection-mode为server时使用
         registry-type: zookeeper
         zookeeper:
           connect-string: localhost:2181
