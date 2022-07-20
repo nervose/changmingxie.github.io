@@ -18,6 +18,16 @@
   ],
   "zh-cn": [
     {
+      "filename": "community.md",
+      "link": "/zh-cn/docs/community/community.html",
+      "meta": {}
+    },
+    {
+      "filename": "tcc-transaction-dev.md",
+      "link": "/zh-cn/docs/community/tcc-transaction-dev.html",
+      "meta": {}
+    },
+    {
       "filename": "demo3.md",
       "link": "/zh-cn/docs/dir/demo3.html",
       "meta": {}

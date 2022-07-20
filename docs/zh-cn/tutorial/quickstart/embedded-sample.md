@@ -3,7 +3,7 @@
 
 这里用dubbo-sample来介绍如何使用tcc-transaction的[**embedded模式**](/zh-cn/docs/tutorial/connectionmode/embedded.html)  
 
-示例工程:[tcc-transaction-dubbo-sample](https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-dubbo-sample) 
+**示例工程:**[tcc-transaction-dubbo-sample](https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-dubbo-sample) 
 > tcc-transaction-dubbo-capital(资金服务)  
 > tcc-transaction-dubbo-redpacket(红包服务)  
 > tcc-transaction-dubbo-order(订单服务)   
@@ -13,7 +13,8 @@
 - springboot启动，springxml配置tcc  
 - 采用tcc-transaction的embedded模式+存储类型(memory/redis) 
 
-架构图 TODO
+**示例图**  
+![embedded模式示例](../../img/sample_tcc_embedded.jpg)  
 
 以下将一步一步教大家如何使用tcc-transaction的embedded模式  
 **步骤如下**
@@ -24,8 +25,8 @@
 - 功能演示  
 
 ## dashboard部署
-如资金服务、红包服务、订单服务采用的embedded存储类型为REDIS，可以结合dashboard演示。
-[dashboard embedded模式部署](/zh-cn/docs/ops/dashboard/deploy-local.html)  
+如资金服务、红包服务、订单服务采用的embedded存储类型为redis，可以结合dashboard演示。
+[dashboard embedded模式部署](/zh-cn/docs/ops/dashboard/deploy-embedded.html)  
 对应application.yaml可如下配置(embedded模式redis)  
 ```yaml
 server:

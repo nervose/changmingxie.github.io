@@ -58,7 +58,7 @@ export default {
               },
               {
                 title: 'embedded模式示例',
-                link: '/zh-cn/docs/tutorial/quickstart/local-sample.html',
+                link: '/zh-cn/docs/tutorial/quickstart/embedded-sample.html',
               },
               {
                 title: 'server模式示例',
@@ -229,6 +229,19 @@ export default {
           {
             title: 'dashboard使用手册',
             link: '/zh-cn/docs/ops/dashboard/dashboard-guild.html',
+          },
+        ],
+      },
+      {
+        title: '社区',
+        children: [
+          {
+            title: '社区',
+            link: '/zh-cn/docs/community/community.html',
+          },
+          {
+            title: '开发者',
+            link: '/zh-cn/docs/community/tcc-transaction-dev.html',
           },
         ],
       },

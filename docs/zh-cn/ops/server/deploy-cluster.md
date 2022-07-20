@@ -1,8 +1,8 @@
 # server集群部署
-适用于生产环境，需要保证高可用。
-注册中心推荐使用：nacos、zookeeper  
-存储类型推荐使用： jdbc、 redis、shard-redis、redis-cluster 
-任务部署方式推荐采用：quartz集群模式     
+适用于生产环境，需要保证高可用。  
+注册中心推荐使用：nacos、zookeeper    
+存储类型推荐使用： jdbc、 redis、shard-redis、redis-cluster   
+任务部署方式推荐采用：quartz集群模式       
 
 以下以注册中心[nacos]+存储类型[redis]+任务部署类型[quartz集群模式]这种组合为例。
 ## 准备阶段
