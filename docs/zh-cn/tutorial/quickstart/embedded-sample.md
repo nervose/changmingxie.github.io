@@ -41,7 +41,7 @@ spring:
     name: tcc-transaction-dashboard
   tcc:
     dashboard:
-      data-fetch-type: local
+      connection-mode: embedded
     storage:
       storage-type: redis
       redis:
@@ -498,7 +498,7 @@ public class PaymentServiceImpl {
 点击支付按钮
 ![支付结果页](../../img/page_dubbo_sample_pay_result.jpg)
 #### 日志演示
-注意调用的先后顺序。  
+注意调用的先后顺序。    
 try阶段
 ```text
 1、order try make payment called.time seq:2022-07-13 17:46:04

@@ -89,7 +89,7 @@ export default {
     ],
     disclaimer: {
       title: '免责声明',
-      content: '免责声明的具体内容',
+      content: 'TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。',
     },
     documentation: {
       title: '文档',

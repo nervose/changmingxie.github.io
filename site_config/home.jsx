@@ -20,7 +20,7 @@ export default {
     },
     introduction: {
       title: 'TCC-TRANSACTION',
-      desc: '开源产品的简单介绍，提供一些该产品的优点、特性描述等',
+      desc: '是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。',
       img: '/img/tcc-invoke.webp',
     },
     features: {
@@ -28,57 +28,50 @@ export default {
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: '特性1',
-          content: '特性1的简单概括',
+          title: '微服务框架支持',
+          content: '目前已支持dubbo、openFeign、grpc等',
         },
         {
           img: '/img/feature_loadbalances.png',
-          title: '特性2',
-          content: '特性2的简单概括',
+          title: 'embedded模式',
+          content: '此种模式，客户端事件及任务操作，直接访问存储，当前已支持存储类型有: memory、rocksdb、jdbc、redis、shard redis、redis-cluster',
         },
         {
           img: '/img/feature_service.png',
-          title: '特性3',
-          content: '特性3的简单概括',
+          title: 'server模式',
+          content: '此模式，客户端通过server来进行事件和任务操作，相比之前配置更简洁',
         },
         {
           img: '/img/feature_hogh.png',
-          title: '特性4',
-          content: '特性4的简单概括',
+          title: 'dashboard',
+          content: '支持事件和任务的可视化操作',
         },
-        {
-          img: '/img/feature_runtime.png',
-          title: '特性5',
-          content: '特性5的简单概括',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: '特性6',
-          content: '特性6的简单概括',
-        },
+        // {
+        //   img: '/img/feature_runtime.png',
+        //   title: 'server',
+        //   content: '特性5的简单概括',
+        // },
+        // {
+        //   img: '/img/feature_maintenance.png',
+        //   title: '特性6',
+        //   content: '特性6的简单概括',
+        // },
       ],
     },
-    start: {
-      title: '快速开始',
-      desc: '简单描述',
-      img: '/img/quick_start.png',
-      button: {
-        text: '阅读更多',
-        link: '/zh-cn/docs/demo1.html',
-      },
-    },
+    // start: {
+    //   title: '快速开始',
+    //   desc: '简单描述',
+    //   img: '/img/quick_start.png',
+    //   button: {
+    //     text: '阅读更多',
+    //     link: '/zh-cn/docs/tutorial/quickstart.html',
+    //   },
+    // },
     users: {
       title: '用户',
-      desc: <span>简单描述</span>,
+      desc: <span>请在 <a rel="noopener noreferrer" target="_blank"
+                        href="https://github.com/changmingxie/tcc-transaction/issues/366">谁在使用tcc-transaction</a> 上提供信息，来帮助我们做的更好。</span>,
       list: [
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
         '/img/users_alibaba.png',
         '/img/users_alibaba.png',
         '/img/users_alibaba.png',
