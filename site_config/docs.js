@@ -146,7 +146,7 @@ export default {
               },
               {
                 title: 'dubbo',
-                link: '/zh-cn/docs/tutorial/rpc/redis.html',
+                link: '/zh-cn/docs/tutorial/rpc/dubbo.html',
               },
               {
                 title: 'openfeign',

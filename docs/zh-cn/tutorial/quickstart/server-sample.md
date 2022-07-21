@@ -70,8 +70,8 @@ spring:
     dashboard:
       userName: admin
       password: 123456
-      data-fetch-type: tccserver
-      registry: # data-fetch-type为server时使用
+      connection-mode: server
+      registry: # connection-mode为server时使用
         registry-type: direct
         direct:
           server-addresses: http://localhost:12332
@@ -383,7 +383,7 @@ public interface RedPacketFeignClient {
 点击支付按钮
 ![支付结果页](../../img/page_dubbo_sample_pay_result.jpg)
 #### 日志演示
-注意调用的先后顺序。 
+注意调用的先后顺序。   
 try阶段
 ```text
 1、order try make payment called.time seq:2022-07-13 17:46:04
