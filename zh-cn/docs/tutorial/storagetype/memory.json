@@ -1,6 +1,6 @@
 {
   "filename": "memory.md",
-  "__html": "<h1 id=\"memory%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B\">memory存储类型 <a class=\"header-anchor\" href=\"#memory%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B\">#</a></h1>\n",
+  "__html": "<h1 id=\"memory%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B\">memory存储类型 <a class=\"header-anchor\" href=\"#memory%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B\">#</a></h1>\n<p>适用于服务单机部署，且允许重启后事件丢失的场景。</p>\n<p>此种存储类型，服务重启后，事件即丢失。</p>\n<p>详见实现<strong>MemoryTransactionStorage</strong></p>\n",
   "link": "/zh-cn/docs/tutorial/storagetype/memory.html",
   "meta": {}
 }
