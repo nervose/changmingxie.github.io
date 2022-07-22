@@ -6,10 +6,11 @@
 - [dashboard](#dashboard)
 
 ## client端
+采用application.yaml(或properties)方式配置
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
 |:------|:------|:------|:-----------|:-----------------|
 |**storage配置**|
-|spring.tcc.storage.domain| 事件域，用于事件隔离，[详见](/zh-cn/docs/terminology.html#domain)|String | | 默认为"TCC" | >= 2.0.0 |
+|spring.tcc.storage.domain| 事件域，用于事件隔离，[详见](/zh-cn/docs/terminology.html#domain)|String | | 默认为"TCC" |
 |spring.tcc.storage.storageMode| 存储模式，仅用于客户端，当取值为CENTRAL，分支事务补偿时会对TRY_SUCCESS状态的事件，进行处理 |枚举| 取值：ALONE、CENTRAL| 默认为ALONE |
 |spring.tcc.storage.storageType| 存储类型|枚举 | 当前支持模式有：REMOTING、MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED| 默认为MEMORY |
 |spring.tcc.storage.transactionStorageClass| 自定义事件存储类，storageType为CUSTOMIZED时用|String| | |
@@ -112,7 +113,7 @@
 存储类公共配置  
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
 |:------|:------|:------|:-----------|:-----------------|:-------|
-|domain| 事件域，用于事件隔离，[详见](/zh-cn/docs/terminology.html#domain)|String | | 默认为"TCC" | >= 2.0.0 |
+|domain| 事件域，用于事件隔离，[详见](/zh-cn/docs/terminology.html#domain)|String | | 默认为"TCC" |
 |storageMode| 存储模式，仅用于客户端，当取值为CENTRAL，分支事务补偿时会对TRY_SUCCESS状态的事件，进行处理 |枚举| 取值：ALONE、CENTRAL| 默认为ALONE |
 |storageType| 存储类型|枚举 | 当前支持模式有：REMOTING、MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED| 默认为MEMORY |
 |transactionStorageClass| 自定义事件存储类，storageType为CUSTOMIZED时用|String| | |
@@ -160,53 +161,53 @@
 |quartzDataSourcePassword|数据源用户密码，quartzClustered为true用到|String | | 默认为"welcome1" |
 
 ### JdbcStoreProperties
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
-|:------|:------|:------|:-----------|:-----------------|:-------|
-|driverClass| jdbc驱动类|String | | 默认为"com.mysql.jdbc.Driver" | >= 2.0.0 |
-|username| 用户名 |String|  |默认为"root" | >= 2.0.0 |
-|password| 密码|String | | 默认为"welcome1" | >= 2.0.0 |
-|jdbcUrl| jdbc链接地址|String| | 默认为"jdbc:mysql://127.0.0.1:3306/TCC?useSSL=false&connectTimeout=1000&socketTimeout=5000"| >= 2.0.0 |
-|initialPoolSize|初始连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为10 | >= 2.0.0 |
-|minPoolSize| 最小连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为10 | >= 2.0.0 |
-|maxPoolSize| 最大连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为50| >= 2.0.0 |
-|checkoutTimeout| 获取连接的超时时间，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为2000| >= 2.0.0 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
+|:------|:------|:------|:-----------|:-----------------|
+|driverClass| jdbc驱动类|String | | 默认为"com.mysql.jdbc.Driver" |
+|jdbcUrl| jdbc链接地址|String| | 默认为"jdbc:mysql://127.0.0.1:3306/TCC?useSSL=false&connectTimeout=1000&socketTimeout=5000"|
+|username| 用户名 |String|  |默认为"root" |
+|password| 密码|String | | 默认为"welcome1" |
+|initialPoolSize|初始连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为10 |
+|minPoolSize| 最小连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为10 |
+|maxPoolSize| 最大连接池数，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为50|
+|checkoutTimeout| 获取连接的超时时间，详见[c3p0](https://www.mchange.com/projects/c3p0) |int| | 默认为2000|
 
 
 ### RedisStoreProperties
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
-|:------|:------|:------|:-----------|:-----------------|:-------|
-|host| 主机名 |String | | 默认为"127.0.0.1" | >= 2.0.0 |
-|port| 端口 |int|  |默认为6379 | >= 2.0.0 |
-|database| 数据库索引|int | | 默认为0 | >= 2.0.0 |
-|password| 密码 |String | | | >= 2.0.0 |
-|soTimeout| 数据响应时间 |int|  |默认为300 | >= 2.0.0 |
-|connectionTimeout| 连接超时时间|int | | 默认为1000 | >= 2.0.0 |
-|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | | >= 2.0.0 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
+|:------|:------|:------|:-----------|:-----------------|
+|host| 主机名 |String | | 默认为"127.0.0.1" |
+|port| 端口 |int|  |默认为6379 |
+|database| 数据库索引|int | | 默认为0 |
+|password| 密码 |String | | |
+|soTimeout| 数据响应时间 |int|  |默认为300 |
+|connectionTimeout| 连接超时时间|int | | 默认为1000 |
+|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | |
 
 ### ShardRedisStoreProperties
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
-|:------|:------|:------|:-----------|:-----------------|:-------|
-|nodes| 节点配置集合 |Set<[HostAndPort](#hostandport)> | | | >= 2.0.0 |
-|password| 密码 |String | | | >= 2.0.0 |
-|soTimeout| 数据响应时间 |int|  |默认为300 | >= 2.0.0 |
-|connectionTimeout| 连接超时时间|int | | 默认为1000 | >= 2.0.0 |
-|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | | >= 2.0.0 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
+|:------|:------|:------|:-----------|:-----------------|
+|nodes| 节点配置集合 |Set<[HostAndPort](#hostandport)> | | |
+|password| 密码 |String | | |
+|soTimeout| 数据响应时间 |int|  |默认为300 |
+|connectionTimeout| 连接超时时间|int | | 默认为1000 |
+|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | |
 
 ### RedisClusterStoreProperties
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
-|:------|:------|:------|:-----------|:-----------------|:-------|
-|nodes| 节点配置集合 |Set<[HostAndPort](#hostandport)> | | | >= 2.0.0 |
-|maxAttempts| 最大重试次数 |int | |默认为5 | >= 2.0.0 |
-|password| 密码 |String | | | >= 2.0.0 |
-|soTimeout| 数据响应时间 |int|  |默认为300 | >= 2.0.0 |
-|connectionTimeout| 连接超时时间|int | | 默认为1000 | >= 2.0.0 |
-|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | | >= 2.0.0 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
+|:------|:------|:------|:-----------|:-----------------|
+|nodes| 节点配置集合 |Set<[HostAndPort](#hostandport)> | | |
+|maxAttempts| 最大重试次数 |int | |默认为5 |
+|password| 密码 |String | | |
+|soTimeout| 数据响应时间 |int|  |默认为300 |
+|connectionTimeout| 连接超时时间|int | | 默认为1000 |
+|poolConfig| 线程池配置|[PoolConfig](#poolconfig) | | |
 
 
 ### DirectRegistryProperties
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
 |:------|:------|:------|:-----------|:-----------------|:-------|
-|serverAddresses| 服务地址 |String| | 默认值为"127.0.0.1:2332"|
+|serverAddresses| 服务地址，多个以英文逗号分割 |String| | 默认值为"127.0.0.1:2332"|
 
 ### ZookeeperRegistryProperties
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
@@ -230,17 +231,17 @@
 
 ### poolConfig
 这里只列出了一下常用的线程池配置
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
 |:------|:------|:------|:-----------|:-----------------|:-------|
-|maxTotal| 最大实例数 |String | | | >= 2.0.0 |
-|maxIdle| 最大空闲实例数 |int|  |默认为300 | >= 2.0.0 |
-|minIdle| 最小空闲实例数|int | | 默认为1000 | >= 2.0.0 |
-|maxWaitMillis| 最大等待时间| | | | >= 2.0.0 |
+|maxTotal| 最大实例数 |String | | |
+|maxIdle| 最大空闲实例数 |int|  |默认为300 |
+|minIdle| 最小空闲实例数|int | | 默认为1000 |
+|maxWaitMillis| 最大等待时间| | | |
 
 ### HostAndPort
-|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|支持版本 |
-|:------|:------|:------|:-----------|:-----------------|:-------|
-|host| 主机名 |String | | | >= 2.0.0 |
-|port| 端口 |int|  | | >= 2.0.0 |
-|database| 数据库索引|int | | 默认为0 | >= 2.0.0 |
+|<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
+|:------|:------|:------|:-----------|:-----------------|
+|host| 主机名 |String | | |
+|port| 端口 |int|  | |
+|database| 数据库索引|int | | 默认为0 |
 

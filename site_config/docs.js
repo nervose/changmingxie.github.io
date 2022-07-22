@@ -91,8 +91,16 @@ export default {
             title: '存储类型',
             children: [
               {
-                title: 'remoting',
-                link: '/zh-cn/docs/tutorial/storagetype/remoting.html',
+                title: 'memory',
+                link: '/zh-cn/docs/tutorial/storagetype/memory.html',
+              },
+              {
+                title: 'rocksdb',
+                link: '/zh-cn/docs/tutorial/storagetype/rocksdb.html',
+              },
+              {
+                title: 'jdbc',
+                link: '/zh-cn/docs/tutorial/storagetype/jdbc.html',
               },
               {
                 title: 'redis',
@@ -107,16 +115,8 @@ export default {
                 link: '/zh-cn/docs/tutorial/storagetype/shard-redis.html',
               },
               {
-                title: 'jdbc',
-                link: '/zh-cn/docs/tutorial/storagetype/jdbc.html',
-              },
-              {
-                title: 'memory',
-                link: '/zh-cn/docs/tutorial/storagetype/memory.html',
-              },
-              {
-                title: 'rocksdb',
-                link: '/zh-cn/docs/tutorial/storagetype/rocksdb.html',
+                title: 'remoting',
+                link: '/zh-cn/docs/tutorial/storagetype/remoting.html',
               },
               {
                 title: 'custom',
@@ -128,33 +128,16 @@ export default {
             title: '事件序列化',
             children: [
               {
+                title: '说明',
+                link: '/zh-cn/docs/tutorial/serializer/index.html',
+              },
+              {
                 title: 'kryo',
                 link: '/zh-cn/docs/tutorial/serializer/kryo.html',
               },
               {
                 title: 'custom',
                 link: '/zh-cn/docs/tutorial/serializer/custom.html',
-              }
-            ],
-          },
-          {
-            title: 'RPC框架支持',
-            children: [
-              {
-                title: '说明',
-                link: '/zh-cn/docs/tutorial/rpc/index.html',
-              },
-              {
-                title: 'dubbo',
-                link: '/zh-cn/docs/tutorial/rpc/dubbo.html',
-              },
-              {
-                title: 'openfeign',
-                link: '/zh-cn/docs/tutorial/rpc/openfeign.html',
-              },
-              {
-                title: 'grpc',
-                link: '/zh-cn/docs/tutorial/rpc/grpc.html',
               }
             ],
           },
@@ -182,7 +165,28 @@ export default {
                 link: '/zh-cn/docs/tutorial/registry/custom.html',
               }
             ],
-          }
+          },
+          {
+            title: 'RPC框架支持',
+            children: [
+              {
+                title: '说明',
+                link: '/zh-cn/docs/tutorial/rpc/index.html',
+              },
+              {
+                title: 'dubbo',
+                link: '/zh-cn/docs/tutorial/rpc/dubbo.html',
+              },
+              {
+                title: 'openfeign',
+                link: '/zh-cn/docs/tutorial/rpc/openfeign.html',
+              },
+              {
+                title: 'grpc',
+                link: '/zh-cn/docs/tutorial/rpc/grpc.html',
+              }
+            ],
+          },
         ],
       },
       {

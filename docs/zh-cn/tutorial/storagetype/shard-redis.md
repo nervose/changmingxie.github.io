@@ -1,2 +1,38 @@
 # shard-redis存储类型
 
+适用于服务单机、集群部署的场景。  
+  
+此种存储类型，采用redis sharding技术，支持海量数据+高并发+高可用的场景。 
+  
+详见实现**ShardJedisTransactionStorage**
+
+## 如何使用  
+
+### 添加配置
+可如下配置，查看[更多shard redis配置](/zh-cn/docs/tutorial/configurations.html#shardredisstoreproperties)
+```yaml
+spring:
+  tcc:
+    storage:
+      storage-type: shard_redis
+      shard-redis:
+        nodes:
+          - host: 127.0.0.1
+            port: 6379
+          - host: 127.0.0.1
+            port: 6380
+          - host: 127.0.0.1
+            port: 6381
+
+```
+
+### maven依赖
+默认已集成了jedis包，开发者可按需调整。  
+```xml
+ <!--tcc-transaction中测试使用版本为3.1.0-->
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>${jedis.version}</version>
+</dependency>
+```
