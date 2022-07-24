@@ -96,15 +96,15 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/demo1.html',
+          link: '/zh-cn/docs/what-is-tcctransaction.html',
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/demo2.html',
+          link: '/zh-cn/docs/tutorial/quickstart.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/dir/demo3.html',
+          link: '/zh-cn/docs/tutorial/quickstart.html',
         },
       ],
     },
