@@ -11,4 +11,4 @@ description: 社区
 
 欢迎加入TCC-TRANSACTION钉钉群   
   
-![钉钉扫码入群](https://raw.githubusercontent.com/changmingxie/tcc-transaction/master-1.6.x/material/tcc-transaction-dingdingtalk.jpg)
+![钉钉扫码入群](/img/tcc-transaction-dingdingtalk.jpeg)

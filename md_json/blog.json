@@ -1,14 +1,6 @@
 {
   "en-us": [
     {
-      "filename": "blog1.md",
-      "link": "/en-us/blog/blog1.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
       "filename": "blog2.md",
       "link": "/en-us/blog/blog2.html",
       "meta": {
@@ -112,6 +104,27 @@
       "meta": {
         "key1": "hello",
         "key2": "world"
+      }
+    },
+    {
+      "filename": "tcc-transaction-1.x-release.md",
+      "link": "/zh-cn/blog/tcc-transaction-1.x-release.html",
+      "meta": {
+        "key1": "tcc-trasaction-1.x版本"
+      }
+    },
+    {
+      "filename": "tcc-transaction-2.x-release.md",
+      "link": "/zh-cn/blog/tcc-transaction-2.x-release.html",
+      "meta": {
+        "key1": "tcc-trasaction-2.x版本"
+      }
+    },
+    {
+      "filename": "tcc-transaction-invoke.md",
+      "link": "/zh-cn/blog/tcc-transaction-invoke.html",
+      "meta": {
+        "key1": "调用流程"
       }
     }
   ]

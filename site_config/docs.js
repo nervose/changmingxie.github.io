@@ -107,12 +107,12 @@ export default {
                 link: '/zh-cn/docs/tutorial/storagetype/redis.html',
               },
               {
-                title: 'redis-cluster',
-                link: '/zh-cn/docs/tutorial/storagetype/redis-cluster.html',
-              },
-              {
                 title: 'shard-redis',
                 link: '/zh-cn/docs/tutorial/storagetype/shard-redis.html',
+              },
+              {
+                title: 'redis-cluster',
+                link: '/zh-cn/docs/tutorial/storagetype/redis-cluster.html',
               },
               {
                 title: 'remoting',
