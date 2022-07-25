@@ -4,7 +4,7 @@ export default {
   port: 18081, // 本地开发服务器的启动端口
   domain: 'dubbo.apache.org', // 站点部署域名，无需协议和path等
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
-  defaultLanguage: 'en-us',
+  defaultLanguage: 'zh-cn',
   'en-us': {
     pageMenu: [
       {
@@ -96,15 +96,15 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/demo1.html',
+          link: '/zh-cn/docs/what-is-tcctransaction.html',
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/demo2.html',
+          link: '/zh-cn/docs/tutorial/quickstart.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/dir/demo3.html',
+          link: '/zh-cn/docs/tutorial/quickstart.html',
         },
       ],
     },
