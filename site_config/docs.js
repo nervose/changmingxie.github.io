@@ -136,6 +136,10 @@ export default {
                 link: '/zh-cn/docs/tutorial/serializer/kryo.html',
               },
               {
+                title: 'fastjson',
+                link: '/zh-cn/docs/tutorial/serializer/fastjson.html',
+              },
+              {
                 title: 'custom',
                 link: '/zh-cn/docs/tutorial/serializer/custom.html',
               }
@@ -184,6 +188,10 @@ export default {
               {
                 title: 'grpc',
                 link: '/zh-cn/docs/tutorial/rpc/grpc.html',
+              },
+              {
+                title: '扩展支持',
+                link: '/zh-cn/docs/tutorial/rpc/support-other-rpc.html',
               }
             ],
           },

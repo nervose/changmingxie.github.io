@@ -1,6 +1,6 @@
 {
   "filename": "index.md",
-  "__html": "<h1 id=\"rpc%E6%A1%86%E6%9E%B6%E6%94%AF%E6%8C%81%E8%AF%B4%E6%98%8E\">RPC框架支持说明 <a class=\"header-anchor\" href=\"#rpc%E6%A1%86%E6%9E%B6%E6%94%AF%E6%8C%81%E8%AF%B4%E6%98%8E\">#</a></h1>\n<p>微服务调用中，相比于1.x，2.x版本支持了分支事务上下文的<strong>隐式传递</strong>。</p>\n<p>当前支持的RPC框架有：</p>\n<ul>\n<li><a href=\"/zh-cn/docs/tutorial/rpc/dubbo.html\">dubbo</a></li>\n<li><a href=\"zh-cn/docs/tutorial/rpc/openfeign.html\">openfeign</a></li>\n<li><a href=\"/zh-cn/docs/tutorial/rpc/grpc.html\">grpc</a></li>\n</ul>\n",
+  "__html": "<h1 id=\"rpc%E6%A1%86%E6%9E%B6%E6%94%AF%E6%8C%81%E8%AF%B4%E6%98%8E\">RPC框架支持说明 <a class=\"header-anchor\" href=\"#rpc%E6%A1%86%E6%9E%B6%E6%94%AF%E6%8C%81%E8%AF%B4%E6%98%8E\">#</a></h1>\n<p><strong>注意</strong>：如何没有用到分支事务，则可以跳过此部分内容。</p>\n<p>在微服务中分支事务场景，需要解决几个主要问题：</p>\n<ul>\n<li>1、事件上下文传递问题，即consumer端如何发送和provider端如何接收。</li>\n<li>2、分支事务的confirm和cancel如何被调用。</li>\n</ul>\n<p>其中问题2，tcc-transaction已实现通用逻辑，即根据上下文状态来执行相应逻辑。最后即为解决不同RPC框架事件上下文传递的问题。</p>\n<p>于我们对不同微服务框架，做了支持。\n另外，相比于1.x，2.x版本支持了对事务上下文的<strong>隐式传递</strong>。</p>\n<p>当前支持的RPC框架有：</p>\n<ul>\n<li><a href=\"/zh-cn/docs/tutorial/rpc/dubbo.html\">dubbo</a></li>\n<li><a href=\"zh-cn/docs/tutorial/rpc/openfeign.html\">openfeign</a></li>\n<li><a href=\"/zh-cn/docs/tutorial/rpc/grpc.html\">grpc</a></li>\n<li><a href=\"/zh-cn/docs/tutorial/rpc/support-other-rpc.html\">扩展支持</a></li>\n</ul>\n",
   "link": "/zh-cn/docs/tutorial/rpc/index.html",
   "meta": {}
 }
