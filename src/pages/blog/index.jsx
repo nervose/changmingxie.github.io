@@ -21,7 +21,7 @@ class Blog extends Language {
         <Header
           type="normal"
           currentKey="blog"
-          logo="/img/dubbo_colorful.png"
+          logo="/img/tcc_colorful.png"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />

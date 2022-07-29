@@ -103,7 +103,7 @@ class Documentation extends Language {
         <Header
           currentKey="docs"
           type="normal"
-          logo="/img/dubbo_colorful.png"
+          logo="/img/tcc_colorful.png"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />

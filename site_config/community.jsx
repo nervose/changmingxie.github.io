@@ -171,13 +171,13 @@ export default {
     events: {
       title: '事件 & 新闻',
       list: [
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: 'tcc-transaction-1.x发布',
-          content: '待完善',
-          dateStr: '2022-07-24',
-          link: '/zh-cn/blog/tcc-transaction-1.x-release.html',
-        },
+        // {
+        //   img: '/img/brhtqqzh.jpeg',
+        //   title: 'tcc-transaction-1.x发布',
+        //   content: '待完善',
+        //   dateStr: '2022-07-24',
+        //   link: '/zh-cn/blog/tcc-transaction-1.x-release.html',
+        // },
         {
           img: '/img/brhtqqzh.jpeg',
           title: 'tcc-transaction-2.x发布',

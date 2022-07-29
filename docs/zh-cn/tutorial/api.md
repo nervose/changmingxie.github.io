@@ -25,4 +25,16 @@
 此注解用于声明tcc接口，用于远程调用时传递事件上下文(TransactionContext)
 
 ### @UniqueIdentity
-此注解作用于方法参数上，参数一般为订单号，可保证同一个订单并发请求是只产生一个事件。
+此注解作用于方法参数上，参数一般为订单号，可保证同一个订单并发请求是只产生一个事件，第二个请求时会报异常。    
+使用可参考如下：    
+```java
+    @Compensable(confirmMethod = "confirmMakePayment", cancelMethod = "cancelMakePayment", asyncConfirm = false)
+    public void makePayment(@UniqueIdentity String orderNo) {
+        System.out.println("order try make payment called.time seq:" + DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
+
+        Order order = orderRepository.findByMerchantOrderNo(orderNo);
+
+        String result = capitalTradeOrderService.record(buildCapitalTradeOrderDto(order));
+        String result2 = redPacketTradeOrderService.record(buildRedPacketTradeOrderDto(order));
+    }
+```

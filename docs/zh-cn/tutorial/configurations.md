@@ -14,10 +14,10 @@
 |spring.tcc.storage.storageMode| 存储模式，仅用于客户端，当取值为CENTRAL，分支事务补偿时会对TRY_SUCCESS状态的事件，进行处理 |枚举| 取值：ALONE、CENTRAL| 默认为ALONE |
 |spring.tcc.storage.storageType| 存储类型|枚举 | 当前支持模式有：REMOTING、MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED| 默认为MEMORY |
 |spring.tcc.storage.transactionStorageClass| 自定义事件存储类，storageType为CUSTOMIZED时用|String| | |
-|spring.tcc.storage.serializerType| 序列化方式，仅用于客户端 |枚举| 取值：KRYO、CUSTOMIZED| 默认为KRYO |
+|spring.tcc.storage.serializerType| 序列化方式，仅用于客户端 |枚举| 取值：KRYO、FASTJSON、CUSTOMIZED| 默认为KRYO |
 |spring.tcc.storage.kryoPoolSize| 序列化方式为KRYO时用到，仅用于客户端 |int| 取值：KRYO、CUSTOMIZED| 默认为KRYO |
 |spring.tcc.storage.transactionSerializerClassName| 自定义事件序列化类，序列化方式为CUSTOMIZED时用到，仅用于客户端 |String| | |
-|spring.tcc.storage.maxTransactionSize| 事件支持最大字节数|int| | 默认为16*1024(16K)|
+|spring.tcc.storage.maxTransactionSize| 事件支持最大字节数|int| | 默认为1*1024*1024(1M)|
 |spring.tcc.storage.maxAttempts| 事件操作尝试次数|int| | 默认为2，即失败一次后，再重试一次|
 |spring.tcc.storage.requestTimeoutMillis| 请求超时时间，storageType为REMOTING时用|long| | 默认为2000，单位为ms|
 |spring.tcc.storage.location| 存储路径，storageType为ROCKSDB时用|String| | 默认为'/tmp'|
@@ -50,7 +50,7 @@
 |**storage配置**|
 |spring.tcc.storage.storageType| 存储类型|枚举 | 支持存储类型有：MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED，**不支持REMOTING**| 默认为MEMORY |
 |spring.tcc.storage.transactionStorageClass| 自定义事件存储类，storageType为CUSTOMIZED时用|String| | |
-|spring.tcc.storage.maxTransactionSize| 事件支持最大字节数|int| | 默认为16*1024(16K)|
+|spring.tcc.storage.maxTransactionSize| 事件支持最大字节数|int| | 默认为1*1024*1024(1M)|
 |spring.tcc.storage.maxAttempts| 事件操作尝试次数|int| | 默认为2，即失败一次后，再重试一次|
 |spring.tcc.storage.location| 存储路径，storageType为ROCKSDB时用|String| | 默认为'/tmp'|
 |spring.tcc.storage.tbSuffix| 事件表名后缀，storageType为JDBC时用|String| | 默认为空，相关表有TCC_TRANSACTION，TCC_DOMAIN|
@@ -117,10 +117,10 @@
 |storageMode| 存储模式，仅用于客户端，当取值为CENTRAL，分支事务补偿时会对TRY_SUCCESS状态的事件，进行处理 |枚举| 取值：ALONE、CENTRAL| 默认为ALONE |
 |storageType| 存储类型|枚举 | 当前支持模式有：REMOTING、MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED| 默认为MEMORY |
 |transactionStorageClass| 自定义事件存储类，storageType为CUSTOMIZED时用|String| | |
-|serializerType| 序列化方式，仅用于客户端 |枚举| 取值：KRYO、CUSTOMIZED| 默认为KRYO |
+|serializerType| 序列化方式，仅用于客户端 |枚举| 取值：KRYO、FASTJSON、CUSTOMIZED| 默认为KRYO |
 |kryoPoolSize| 序列化方式为KRYO时用到，仅用于客户端 |int| 取值：KRYO、CUSTOMIZED| 默认为KRYO |
 |transactionSerializerClassName| 自定义事件序列化类，序列化方式为CUSTOMIZED时用到，仅用于客户端 |String| | |
-|maxTransactionSize| 事件支持最大字节数|int| | 默认为16*1024(16K)|
+|maxTransactionSize| 事件支持最大字节数|int| | 默认为1*1024*1024(1M)|
 |maxAttempts| 事件操作尝试次数|int| | 默认为2，即失败一次后，再重试一次|
 |requestTimeoutMillis| 请求超时时间，storageType为REMOTING时用|long| | 默认为2000，单位为ms|
 |location| 存储路径，storageType为ROCKSDB时用|String| | 默认为'/tmp'|

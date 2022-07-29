@@ -166,8 +166,18 @@
       "meta": {}
     },
     {
+      "filename": "support-other-rpc.md",
+      "link": "/zh-cn/docs/tutorial/rpc/support-other-rpc.html",
+      "meta": {}
+    },
+    {
       "filename": "custom.md",
       "link": "/zh-cn/docs/tutorial/serializer/custom.html",
+      "meta": {}
+    },
+    {
+      "filename": "fastjson.md",
+      "link": "/zh-cn/docs/tutorial/serializer/fastjson.html",
       "meta": {}
     },
     {
