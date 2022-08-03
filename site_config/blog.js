@@ -59,12 +59,19 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'tcc-transaction-2.x发布',
+        author: 'admin',
+        dateStr: '2022-08-03',
+        desc: '相对于1.x版本，功能更加丰富，扩展性更好',
+        link: '/zh-cn/blog/tcc-transaction-2.x-release.html',
+      },
+      {
         title: 'TCC-TRANSACTION调用流程',
         author: 'huabao.fang',
         dateStr: '2022-07-24',
         desc: '从源码层面，分析TCC-TRANSACTION的调用流程',
         link: '/zh-cn/blog/tcc-transaction-invoke.html',
-      },
+      }
     ],
   },
 };
