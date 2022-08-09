@@ -44,7 +44,9 @@ TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解�
 
 ## 快速开始
 
-[快速开始](/zh-cn/docs/tutorial/quickstart.html)
+[快速开始](/zh-cn/docs/tutorial/quickstart.html)  
+[最新可用版本2.x](/zh-cn/blog/tcc-transaction-2.x-release.html)  
+
 
 ## 常见问题
 [常见问题](/zh-cn/docs/faq.html)

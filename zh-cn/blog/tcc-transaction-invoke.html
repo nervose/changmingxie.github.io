@@ -12,7 +12,186 @@
 	<link rel="stylesheet" href="/build/blogDetail.css" />
 </head>
 <body>
-	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="undefined/zh-cn/index.html"><img class="logo" src="undefined/img/tcc_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><div class="header-menu"><img class="header-menu-toggle" src="undefined/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/docs/what-is-tcctransaction.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="undefined/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1 id="tcc-transaction%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90">TCC-TRANSACTION调用流程源码分析 <a class="header-anchor" href="#tcc-transaction%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90">#</a></h1>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="undefined/zh-cn/index.html"><img class="logo" src="undefined/img/tcc_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><div class="header-menu"><img class="header-menu-toggle" src="undefined/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/docs/what-is-tcctransaction.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="undefined/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="undefined/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1 id="tcc-transaction%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B">TCC-TRANSACTION调用流程 <a class="header-anchor" href="#tcc-transaction%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B">#</a></h1>
+<p>本文意说明tcc-transaction在微服务调用过程中的执行过程，方便开发者对源码的阅读和分析使用过程遇到的问题。</p>
+<p>假设A,B,C三个微服务对应。A服务发起tcc调用，B、C服务提供分支事务接口。调用流程图如下:<br>
+<img src="/img/tcc/tcc-invoke-all.jpg" alt="整体调用流程"></p>
+<p>源码调试时，可以使用<a href="https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-http-sample">tcc-transaction-http-sample示例</a></p>
+<blockquote>
+<p>tcc-transaction-http-order(订单服务)，看作A服务<br>
+tcc-transaction-http-capital(资金服务)，看作B服务<br>
+tcc-transaction-http-redpacket(红包服务)，看作C服务</p>
+</blockquote>
+<p><strong>相关名词说明</strong></p>
+<ul>
+<li>事务拦截器，即<a href="/zh-cn/docs/tutorial/api.html#compensabletransactioninterceptor">CompensableTransactionInterceptor</a></li>
+<li>资源协调拦截器，即<a href="/zh-cn/docs/tutorial/api.html#resourcecoordinatorinterceptor">ResourceCoordinatorInterceptor</a></li>
+<li>事务管理器，即TransactionManager</li>
+</ul>
+<p>下面对try-confirm-cancel各个阶段进行详细分析。<br>
+tcc调用方法是以@Compensable来标识的，spring bean方式调用时，会被<strong>事件拦截器</strong>和<strong>资源协调拦截器</strong>拦截。<br>
+<strong>事件拦截器</strong>会控制整个try-confirm-cancel流程，以下对这三个流程进行详细说明。</p>
+<h2 id="try%E6%B5%81%E7%A8%8B">try流程 <a class="header-anchor" href="#try%E6%B5%81%E7%A8%8B">#</a></h2>
+<p><img src="/img/tcc/tcc-invoke-try.jpg" alt="try流程"><br>
+<strong>注意:</strong> 为避免画图的复杂性，相比于confirm和cancel流程图，try流程中省略了<strong>事务管理器</strong>。</p>
+<h3 id="%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">在A服务中try阶段 <a class="header-anchor" href="#%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>源码可查看：<br>
+CompensableTransactionInterceptor.rootMethodProceed方法(控制主事务流程)<br>
+ResourceCoordinatorInterceptor.interceptTransactionContextMethod方法(添加参与方)</p>
+<h4 id="a1-%E5%BC%80%E5%90%AF%E4%B8%BB%E4%BA%8B%E5%8A%A1%E3%80%82">A1 开启主事务。 <a class="header-anchor" href="#a1-%E5%BC%80%E5%90%AF%E4%B8%BB%E4%BA%8B%E5%8A%A1%E3%80%82">#</a></h4>
+<p>事件上下文为空，走主事务流程，开启主事务，即创建主事件和缓存主事件。</p>
+<h4 id="a2-%E5%88%9B%E5%BB%BA%E5%8F%82%E4%B8%8E%E6%96%B9a%E3%80%82">A2 创建参与方A。 <a class="header-anchor" href="#a2-%E5%88%9B%E5%BB%BA%E5%8F%82%E4%B8%8E%E6%96%B9a%E3%80%82">#</a></h4>
+<p>详见<a href="/zh-cn/docs/tutorial/api.html#participant">事件参与方</a></p>
+<h4 id="a3-%E4%BF%9D%E5%AD%98%E4%BA%8B%E4%BB%B6a%E5%8F%8A%E5%8F%82%E4%B8%8E%E6%96%B9a(%E6%8C%81%E4%B9%85%E5%8C%96)%E3%80%82">A3 保存事件A及参与方A(持久化)。 <a class="header-anchor" href="#a3-%E4%BF%9D%E5%AD%98%E4%BA%8B%E4%BB%B6a%E5%8F%8A%E5%8F%82%E4%B8%8E%E6%96%B9a(%E6%8C%81%E4%B9%85%E5%8C%96)%E3%80%82">#</a></h4>
+<p><strong>注意</strong>:参与方A是作为事件A的组成部分存储的，因此一次存储操作即可</p>
+<h4 id="a4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">A4 执行本地try方法 <a class="header-anchor" href="#a4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">#</a></h4>
+<p>本地try方法，里面可能包含其他逻辑，这里只关注分支事务的远程调用。</p>
+<h5 id="a4.1-%E8%B0%83%E7%94%A8b%E6%9C%8D%E5%8A%A1try%E6%96%B9%E6%B3%95">A4.1 调用B服务try方法 <a class="header-anchor" href="#a4.1-%E8%B0%83%E7%94%A8b%E6%9C%8D%E5%8A%A1try%E6%96%B9%E6%B3%95">#</a></h5>
+<ul>
+<li>A4.1.1 添加参与方B</li>
+<li>A4.1.2 保存参与方B(持久化)</li>
+<li>A4.1.3 RPC调用B服务+事件上下文状态：TRYING，执行<a href="#%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">服务B上分支事务try阶段</a></li>
+</ul>
+<blockquote>
+<p>这里涉及到事件上下文，在微服务中传递，传递方式与具体微服务类型有关，感兴趣可<a href="/zh-cn/docs/tutorial/rpc/index.html">查看</a></p>
+</blockquote>
+<ul>
+<li>A4.1.4 更新参与方状态为TRY_SUCCESS</li>
+</ul>
+<p>调用一个B服务的rpc-clientB的try方法，此方法被@EnableTcc修饰，从而被<strong>资源协调拦截器</strong>拦截。<br>
+如<strong>CapitalFeignClient</strong>中写法</p>
+<pre><code class="language-java"><span class="hljs-meta">@FeignClient</span>(name = <span class="hljs-string">"capital"</span>, url = <span class="hljs-string">"http://localhost:8082/tcc-transaction-http-capital/"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">CapitalFeignClient</span> </span>{
+    <span class="hljs-meta">@EnableTcc</span>
+    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/tradeOrder/record"</span>, method = RequestMethod.POST)
+    <span class="hljs-meta">@ResponseBody</span>
+    <span class="hljs-function">String <span class="hljs-title">record</span><span class="hljs-params">(@RequestBody CapitalTradeOrderDto tradeOrderDto)</span></span>;
+}
+
+</code></pre>
+<h5 id="a4.2-%E8%B0%83%E7%94%A8c%E6%9C%8D%E5%8A%A1try%E6%96%B9%E6%B3%95">A4.2 调用C服务try方法 <a class="header-anchor" href="#a4.2-%E8%B0%83%E7%94%A8c%E6%9C%8D%E5%8A%A1try%E6%96%B9%E6%B3%95">#</a></h5>
+<ul>
+<li>A4.2.1 添加参与方C</li>
+<li>A4.2.2 保存参与方C(持久化)</li>
+<li>A4.2.3 RPC调用C服务+事件上下文状态：TRYING，执行<a href="#%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">服务C上分支事务try阶段</a></li>
+<li>A4.2.4 更新参与方状态为TRY_SUCCESS</li>
+</ul>
+<p>调用一个C服务的rpc-clientC的try方法，此方法被@EnableTcc修饰，从而被<strong>资源协调拦截器</strong>拦截。<br>
+如<strong>RedPacketFeignClient</strong>中写法</p>
+<pre><code class="language-java"><span class="hljs-meta">@FeignClient</span>(name = <span class="hljs-string">"redPacket"</span>, url = <span class="hljs-string">"http://localhost:8083/tcc-transaction-http-redpacket/"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RedPacketFeignClient</span> </span>{
+    <span class="hljs-meta">@EnableTcc</span>
+    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/tradeOrder/record"</span>, method = RequestMethod.POST)
+    <span class="hljs-meta">@ResponseBody</span>
+    <span class="hljs-function">String <span class="hljs-title">record</span><span class="hljs-params">(@RequestBody RedPacketTradeOrderDto tradeOrderDto)</span></span>;
+}
+
+</code></pre>
+<h4 id="a5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9a%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">A5 更新参与方A状态为TRY_SUCCESS <a class="header-anchor" href="#a5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9a%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">#</a></h4>
+<h4 id="a6-%E6%89%A7%E8%A1%8Cconfirm%2Fcancel%E6%B5%81%E7%A8%8B%E3%80%82">A6 执行confirm/cancel流程。 <a class="header-anchor" href="#a6-%E6%89%A7%E8%A1%8Cconfirm%2Fcancel%E6%B5%81%E7%A8%8B%E3%80%82">#</a></h4>
+<ul>
+<li>try正常，则执行<a href="#confirm%E6%B5%81%E7%A8%8B">confirm流程</a></li>
+<li>try异常，则执行<a href="#cancel%E6%B5%81%E7%A8%8B">cancel流程</a></li>
+</ul>
+<h3 id="%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">在B服务中try阶段 <a class="header-anchor" href="#%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>源码可查看：<br>
+CompensableTransactionInterceptor.providerMethodProceed(try逻辑)<br>
+ResourceCoordinatorInterceptor.interceptTransactionContextMethod方法(添加参与方)</p>
+<h3 id="b1-%E5%BC%80%E5%90%AF%E5%88%86%E6%94%AF%E4%BA%8B%E5%8A%A1">B1 开启分支事务 <a class="header-anchor" href="#b1-%E5%BC%80%E5%90%AF%E5%88%86%E6%94%AF%E4%BA%8B%E5%8A%A1">#</a></h3>
+<p>事件上下文非空，走分支事务流程，开启分支主事务，即构建分支事件。</p>
+<h3 id="b2-%E6%B7%BB%E5%8A%A0%E5%8F%82%E4%B8%8E%E6%96%B9b">B2 添加参与方B <a class="header-anchor" href="#b2-%E6%B7%BB%E5%8A%A0%E5%8F%82%E4%B8%8E%E6%96%B9b">#</a></h3>
+<h3 id="b3-%E4%BF%9D%E5%AD%98%E5%8C%96%E4%BA%8B%E4%BB%B6b%E5%92%8C%E5%8F%82%E4%B8%8E%E6%96%B9b(%E6%8C%81%E4%B9%85%E5%8C%96)">B3 保存化事件B和参与方B(持久化) <a class="header-anchor" href="#b3-%E4%BF%9D%E5%AD%98%E5%8C%96%E4%BA%8B%E4%BB%B6b%E5%92%8C%E5%8F%82%E4%B8%8E%E6%96%B9b(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h3>
+<p><strong>注意</strong>:参与方B是作为事件B的组成部分存储的，因此一次存储操作即可</p>
+<h3 id="b4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">B4 执行本地try方法 <a class="header-anchor" href="#b4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">#</a></h3>
+<h3 id="b5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">B5 更新参与方状态为TRY_SUCCESS <a class="header-anchor" href="#b5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">#</a></h3>
+<h3 id="b6-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">B6 更新事件状态为TRY_SUCCESS <a class="header-anchor" href="#b6-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">#</a></h3>
+<h3 id="b7-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">B7 更新事件B(持久化) <a class="header-anchor" href="#b7-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h3>
+<h3 id="%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">在C服务中try阶段 <a class="header-anchor" href="#%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADtry%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>源码可查看：<br>
+CompensableTransactionInterceptor.providerMethodProceed(try逻辑)<br>
+ResourceCoordinatorInterceptor.interceptTransactionContextMethod方法(添加参与方)</p>
+<h3 id="c1-%E5%BC%80%E5%90%AF%E5%88%86%E6%94%AF%E4%BA%8B%E5%8A%A1">C1 开启分支事务 <a class="header-anchor" href="#c1-%E5%BC%80%E5%90%AF%E5%88%86%E6%94%AF%E4%BA%8B%E5%8A%A1">#</a></h3>
+<p>事件上下文非空，走分支事务流程，开启分支主事务，即构建分支事件。</p>
+<h3 id="c2-%E6%B7%BB%E5%8A%A0%E5%8F%82%E4%B8%8E%E6%96%B9c">C2 添加参与方C <a class="header-anchor" href="#c2-%E6%B7%BB%E5%8A%A0%E5%8F%82%E4%B8%8E%E6%96%B9c">#</a></h3>
+<h3 id="c3-%E4%BF%9D%E5%AD%98%E5%8C%96%E4%BA%8B%E4%BB%B6c%E5%92%8C%E5%8F%82%E4%B8%8E%E6%96%B9c(%E6%8C%81%E4%B9%85%E5%8C%96)">C3 保存化事件C和参与方C(持久化) <a class="header-anchor" href="#c3-%E4%BF%9D%E5%AD%98%E5%8C%96%E4%BA%8B%E4%BB%B6c%E5%92%8C%E5%8F%82%E4%B8%8E%E6%96%B9c(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h3>
+<p><strong>注意</strong>:参与方C是作为事件B的组成部分存储的，因此一次存储操作即可</p>
+<h3 id="c4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">C4 执行本地try方法 <a class="header-anchor" href="#c4-%E6%89%A7%E8%A1%8C%E6%9C%AC%E5%9C%B0try%E6%96%B9%E6%B3%95">#</a></h3>
+<h3 id="c5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">C5 更新参与方状态为TRY_SUCCESS <a class="header-anchor" href="#c5-%E6%9B%B4%E6%96%B0%E5%8F%82%E4%B8%8E%E6%96%B9%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">#</a></h3>
+<h3 id="c6-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">C6 更新事件状态为TRY_SUCCESS <a class="header-anchor" href="#c6-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%BAtry_success">#</a></h3>
+<h3 id="c7-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">C7 更新事件C(持久化) <a class="header-anchor" href="#c7-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h3>
+<h2 id="confirm%E6%B5%81%E7%A8%8B">confirm流程 <a class="header-anchor" href="#confirm%E6%B5%81%E7%A8%8B">#</a></h2>
+<p><img src="/img/tcc/tcc-invoke-confirm.jpg" alt="confirm流程">
+主事务中，try流程正常时，会进入confirm流程。</p>
+<h3 id="%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">在A服务中confirm阶段 <a class="header-anchor" href="#%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>详见源码: TransactionManager.commit方法。</p>
+<h4 id="a1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6a%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">A1 设置事件A状态为CONFIRMING <a class="header-anchor" href="#a1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6a%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">#</a></h4>
+<h4 id="a2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)">A2 更新事件A(持久化) <a class="header-anchor" href="#a2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<h4 id="a3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6a-commit">A3 执行事件A commit <a class="header-anchor" href="#a3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6a-commit">#</a></h4>
+<p>按顺序对所有非<strong>CONFIRM_SUCCESS状态</strong>的参与方，执行commit操作，异常则中断流程。</p>
+<h5 id="a3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9a-commit">A3.1 执行参与方A commit <a class="header-anchor" href="#a3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9a-commit">#</a></h5>
+<p>通过java反射方式，调用本地confirm方法。</p>
+<h5 id="a3.2-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-commit">A3.2 执行参与方B commit <a class="header-anchor" href="#a3.2-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-commit">#</a></h5>
+<p>通过java反射方式，调用远程服务B(rpc-clientB)的try方法，RPC调用时会隐式传递事件上下文(状态：CONFIRMING)，请求到服务B会执行对应的commit逻辑。</p>
+<h5 id="a3.3-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-commit">A3.3 执行参与方C commit <a class="header-anchor" href="#a3.3-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-commit">#</a></h5>
+<p>通过java反射方式，调用远程服务B(rpc-clientC)的try方法，RPC调用时会隐式传递事件上下文(状态：CONFIRMING)，请求到服务C会执行对应的commit逻辑。</p>
+<h4 id="a4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)">A4 删除事件A(持久化) <a class="header-anchor" href="#a4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<p>删除事件A(包含其下所有参与方[A、B、C])，服务A的主事务的confirm阶段完成！</p>
+<h3 id="%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">在B服务中confirm阶段 <a class="header-anchor" href="#%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>识别事件上下文中状态为CONFIRMING, 执行confirm操作。<br>
+详见源码: CompensableTransactionInterceptor.providerMethodProceed方法(confirm逻辑)。</p>
+<h4 id="b1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6b%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">B1 设置事件B状态为CONFIRMING <a class="header-anchor" href="#b1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6b%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">#</a></h4>
+<h4 id="b2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">B2 更新事件B(持久化) <a class="header-anchor" href="#b2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<h4 id="b3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6b-commit">B3 执行事件B commit <a class="header-anchor" href="#b3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6b-commit">#</a></h4>
+<h5 id="b3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-commit">B3.1 执行参与方B commit <a class="header-anchor" href="#b3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-commit">#</a></h5>
+<h4 id="b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">B4 删除事件B(持久化) <a class="header-anchor" href="#b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<p>删除事件B(包含其下所有参与方[B])，服务B的分支事务的confirm阶段完成！</p>
+<h3 id="%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">在C服务中confirm阶段 <a class="header-anchor" href="#%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADconfirm%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>识别事件上下文中状态为CONFIRMING, 执行confirm操作。<br>
+详见源码: CompensableTransactionInterceptor.providerMethodProceed方法(confirm逻辑)。</p>
+<h4 id="c1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6c%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">C1 设置事件C状态为CONFIRMING <a class="header-anchor" href="#c1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6c%E7%8A%B6%E6%80%81%E4%B8%BAconfirming">#</a></h4>
+<h4 id="c2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">C2 更新事件C(持久化) <a class="header-anchor" href="#c2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<h4 id="c3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6c-commit">C3 执行事件C commit <a class="header-anchor" href="#c3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6c-commit">#</a></h4>
+<h5 id="c3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-commit">C3.1 执行参与方C commit <a class="header-anchor" href="#c3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-commit">#</a></h5>
+<h4 id="c4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">C4 删除事件C(持久化) <a class="header-anchor" href="#c4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<p>删除事件C(包含其下所有参与方[C])，服务C的分支事务的confirm阶段完成！</p>
+<h2 id="cancel%E6%B5%81%E7%A8%8B">cancel流程 <a class="header-anchor" href="#cancel%E6%B5%81%E7%A8%8B">#</a></h2>
+<p><img src="/img/tcc/tcc-invoke-cancel.jpg" alt="cancel流程">
+主事务中，try流程异常时，会进入cancel流程。</p>
+<h3 id="%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">在A服务中cancel阶段 <a class="header-anchor" href="#%E5%9C%A8a%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>详见源码: CompensableTransactionInterceptor.rootMethodProceed方法(cancel逻辑)。</p>
+<h4 id="a1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6a%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">A1 设置事件A状态为CANCELLING <a class="header-anchor" href="#a1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6a%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">#</a></h4>
+<h4 id="a2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)-1">A2 更新事件A(持久化) <a class="header-anchor" href="#a2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)-1">#</a></h4>
+<h4 id="a3-%E6%89%A7%E8%A1%8C%E4%BA%8Ba-rollback">A3 执行事A rollback <a class="header-anchor" href="#a3-%E6%89%A7%E8%A1%8C%E4%BA%8Ba-rollback">#</a></h4>
+<p>按顺序对所有非<strong>CANCEL_SUCCESS状态</strong>的参与方，执行rollback操作，异常则中断流程。</p>
+<h5 id="a3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8Ea-rollback">A3.1 执行参与A rollback <a class="header-anchor" href="#a3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8Ea-rollback">#</a></h5>
+<p>通过java反射方式，调用本地cancel方法。</p>
+<h5 id="a3.2-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-rollback">A3.2 执行参与方B rollback <a class="header-anchor" href="#a3.2-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-rollback">#</a></h5>
+<p>通过java反射方式，调用远程服务B(rpc-clientB)的try方法，RPC调用时会隐式传递事件上下文(状态：CANCELLING)，请求到服务B会执行对应的rollback逻辑。</p>
+<h5 id="a3.3-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-rollback">A3.3 执行参与方C rollback <a class="header-anchor" href="#a3.3-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-rollback">#</a></h5>
+<p>通过java反射方式，调用远程服务B(rpc-clientC)的try方法，RPC调用时会隐式传递事件上下文(状态：CANCELLING)，请求到服务C会执行对应的rollback逻辑。</p>
+<h4 id="a4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)-1">A4 删除事件A(持久化) <a class="header-anchor" href="#a4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6a(%E6%8C%81%E4%B9%85%E5%8C%96)-1">#</a></h4>
+<p>删除事件A(包含其下所有参与方[A、B、C])，服务A主事务的cancel阶段完成！</p>
+<h3 id="%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">在B服务中cancel阶段 <a class="header-anchor" href="#%E5%9C%A8b%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>识别事件上下文中状态为CANCELLING, 执行cancel操作。<br>
+详见源码: CompensableTransactionInterceptor.providerMethodProceed方法(cancel逻辑)。</p>
+<h4 id="b1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6b%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">B1 设置事件B状态为CANCELLING <a class="header-anchor" href="#b1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6b%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">#</a></h4>
+<h4 id="b2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)-1">B2 更新事件B(持久化) <a class="header-anchor" href="#b2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)-1">#</a></h4>
+<h4 id="b3-%E6%89%A7%E8%A1%8C%E4%BA%8Bb-rollback">B3 执行事B rollback <a class="header-anchor" href="#b3-%E6%89%A7%E8%A1%8C%E4%BA%8Bb-rollback">#</a></h4>
+<h5 id="b3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-rollback">B3.1 执行参与方B rollback <a class="header-anchor" href="#b3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9b-rollback">#</a></h5>
+<p>通过java反射方式，调用本地cancel方法。</p>
+<h4 id="b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)-1">B4 删除事件B(持久化) <a class="header-anchor" href="#b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6b(%E6%8C%81%E4%B9%85%E5%8C%96)-1">#</a></h4>
+<p>删除事件B(包含其下所有参与方[B])，服务B分支事务的cancel阶段完成！</p>
+<h3 id="%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">在C服务中cancel阶段 <a class="header-anchor" href="#%E5%9C%A8c%E6%9C%8D%E5%8A%A1%E4%B8%ADcancel%E9%98%B6%E6%AE%B5">#</a></h3>
+<p>识别事件上下文中状态为CANCELLING, 执行cancel操作。<br>
+详见源码: CompensableTransactionInterceptor.providerMethodProceed方法(cancel逻辑)。</p>
+<h4 id="c1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6c%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">C1 设置事件C状态为CANCELLING <a class="header-anchor" href="#c1-%E8%AE%BE%E7%BD%AE%E4%BA%8B%E4%BB%B6c%E7%8A%B6%E6%80%81%E4%B8%BAcancelling">#</a></h4>
+<h4 id="c2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)-1">C2 更新事件C(持久化) <a class="header-anchor" href="#c2-%E6%9B%B4%E6%96%B0%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)-1">#</a></h4>
+<h4 id="c3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6c-rollback">C3 执行事件C rollback <a class="header-anchor" href="#c3-%E6%89%A7%E8%A1%8C%E4%BA%8B%E4%BB%B6c-rollback">#</a></h4>
+<h5 id="c3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-rollback">C3.1 执行参与方C rollback <a class="header-anchor" href="#c3.1-%E6%89%A7%E8%A1%8C%E5%8F%82%E4%B8%8E%E6%96%B9c-rollback">#</a></h5>
+<p>通过java反射方式，调用本地cancel方法。</p>
+<h4 id="b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">B4 删除事件C(持久化) <a class="header-anchor" href="#b4-%E5%88%A0%E9%99%A4%E4%BA%8B%E4%BB%B6c(%E6%8C%81%E4%B9%85%E5%8C%96)">#</a></h4>
+<p>删除事件C(包含其下所有参与方[C])，服务C分支事务的cancel阶段完成！</p>
+<h2 id="%E6%80%BB%E7%BB%93">总结 <a class="header-anchor" href="#%E6%80%BB%E7%BB%93">#</a></h2>
 <p>待完善</p>
 </section><footer class="footer-container"><div class="footer-body"><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="undefined/zh-cn/docs/what-is-tcctransaction.html" target="_self">概览</a></dd><dd><a href="undefined/zh-cn/docs/tutorial/quickstart.html" target="_self">快速开始</a></dd><dd><a href="undefined/zh-cn/docs/tutorial/quickstart.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="undefined/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="undefined/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2022 TCC-TRANSACTION</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
