@@ -54,7 +54,8 @@
 如果第一阶段所有 try 操作都成功，则活动管理器调用所有从业务活动的 confirm操作。否则调用所有从业务服务的 cancel 操作。<br>
 需要注意的是第二阶段 confirm 或 cancel 操作本身也是满足最终一致性的过程，在调用 confirm 或 cancel 的时候也可能因为某种原因（比如网络）导致调用失败，所以需要活动管理支持重试的能力，同时这也就要求 confirm 和 cancel 操作具有幂等性。</p>
 <h2 id="%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">快速开始 <a class="header-anchor" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B">#</a></h2>
-<p><a href="/zh-cn/docs/tutorial/quickstart.html">快速开始</a></p>
+<p><a href="/zh-cn/docs/tutorial/quickstart.html">快速开始</a><br>
+<a href="/zh-cn/blog/tcc-transaction-2.x-release.html">最新可用版本2.x</a></p>
 <h2 id="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题 <a class="header-anchor" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">#</a></h2>
 <p><a href="/zh-cn/docs/faq.html">常见问题</a></p>
 <h2 id="%E8%AE%A8%E8%AE%BA%E7%BE%A4">讨论群 <a class="header-anchor" href="#%E8%AE%A8%E8%AE%BA%E7%BE%A4">#</a></h2>

@@ -121,6 +121,13 @@
       }
     },
     {
+      "filename": "tcc-transaction-client-start.md",
+      "link": "/zh-cn/blog/tcc-transaction-client-start.html",
+      "meta": {
+        "key1": "启动流程"
+      }
+    },
+    {
       "filename": "tcc-transaction-invoke.md",
       "link": "/zh-cn/blog/tcc-transaction-invoke.html",
       "meta": {
