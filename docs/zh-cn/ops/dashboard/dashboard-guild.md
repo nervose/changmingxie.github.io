@@ -90,9 +90,8 @@ dashbaord部署请[点这里](/zh-cn/docs/ops/dashboard/index.html)
 这里删除是软删除，批量将事件更新为删除状态    
 ### 事件详情  
 展示事件内容信息，比如参与方信息等  
-**注意**：
-- 出于性能考虑默认事件内容采用序列化方式为[kryo](/zh-cn/docs/tutorial/serializer/kryo.html)，详情会展示为乱码(待优化)  
-- 如果要详情明文显示，可采用[jackson序列化](/zh-cn/docs/tutorial/serializer/custom.html#jackson序列化)
+**注意**: 嵌入模式下且事件内容采用kryo序列化的场景，详细展示会解析异常，会降级为base64字符串展示，可复制该字符串去源服务解析。  
+![事件详情解析异常](../../img/dashboard/transaction_detail_parse_error.jpg)
 ### 已删除事件分页查询
 ![已删除事件分页查询](../../img/dashboard/transaction_manager_for_deleted.jpg)  
 ### 已删除事件批量恢复

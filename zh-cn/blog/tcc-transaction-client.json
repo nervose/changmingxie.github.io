@@ -1,0 +1,8 @@
+{
+  "filename": "tcc-transaction-client.md",
+  "__html": "<h1 id=\"tcc-transaction%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B\">TCC-TRANSACTION客户端启动流程 <a class=\"header-anchor\" href=\"#tcc-transaction%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B\">#</a></h1>\n<p>本文意说明tcc-transaction embedded模式，在微服务调用过程中的执行过程，方便开发者对源码的阅读和分析使用过程遇到的问题。\n这里以示例工程:<a href=\"https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-tutorial-sample/tcc-transaction-http-sample\">tcc-transaction-http-sample</a> 为例来展开说明\n<strong>涉及服务</strong></p>\n<blockquote>\n<p>tcc-transaction-http-capital(资金服务)<br>\ntcc-transaction-http-redpacket(红包服务)<br>\ntcc-transaction-http-order(订单服务)</p>\n</blockquote>\n",
+  "link": "/zh-cn/blog/tcc-transaction-client.html",
+  "meta": {
+    "key1": "客户端"
+  }
+}
