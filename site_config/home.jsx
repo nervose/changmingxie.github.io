@@ -21,7 +21,7 @@ export default {
     introduction: {
       title: 'TCC-TRANSACTION',
       desc: '是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。',
-      img: '/img/tcc-invoke.webp',
+      img: '/img/tcc/tcc-invoke-all2.jpg',
     },
     features: {
       title: '特性一览',
@@ -39,7 +39,7 @@ export default {
         {
           img: '/img/feature_service.png',
           title: 'server模式',
-          content: '此模式，客户端通过server来进行事件和任务操作，相比之前配置更简洁',
+          content: '此模式，客户端通过server来进行事件和任务操作，相比之前配置更简洁，客户端负载更轻。',
         },
         {
           img: '/img/feature_hogh.png',

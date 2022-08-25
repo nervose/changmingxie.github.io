@@ -51,62 +51,6 @@
   ],
   "zh-cn": [
     {
-      "filename": "blog1.md",
-      "link": "/zh-cn/blog/blog1.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog2.md",
-      "link": "/zh-cn/blog/blog2.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog3.md",
-      "link": "/zh-cn/blog/blog3.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog4.md",
-      "link": "/zh-cn/blog/blog4.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog5.md",
-      "link": "/zh-cn/blog/blog5.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog6.md",
-      "link": "/zh-cn/blog/blog6.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
-      "filename": "blog7.md",
-      "link": "/zh-cn/blog/blog7.html",
-      "meta": {
-        "key1": "hello",
-        "key2": "world"
-      }
-    },
-    {
       "filename": "tcc-transaction-1.x-release.md",
       "link": "/zh-cn/blog/tcc-transaction-1.x-release.html",
       "meta": {
@@ -121,10 +65,10 @@
       }
     },
     {
-      "filename": "tcc-transaction-client-start.md",
-      "link": "/zh-cn/blog/tcc-transaction-client-start.html",
+      "filename": "tcc-transaction-client.md",
+      "link": "/zh-cn/blog/tcc-transaction-client.html",
       "meta": {
-        "key1": "启动流程"
+        "key1": "客户端"
       }
     },
     {
@@ -132,6 +76,20 @@
       "link": "/zh-cn/blog/tcc-transaction-invoke.html",
       "meta": {
         "key1": "调用流程"
+      }
+    },
+    {
+      "filename": "tcc-transaction-recover.md",
+      "link": "/zh-cn/blog/tcc-transaction-recover.html",
+      "meta": {
+        "key1": "事务补偿恢复"
+      }
+    },
+    {
+      "filename": "tcc-transaction-server.md",
+      "link": "/zh-cn/blog/tcc-transaction-server.html",
+      "meta": {
+        "key1": "server架构"
       }
     }
   ]

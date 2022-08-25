@@ -1,5 +1,5 @@
 ---
-key1: 启动流程
+key1: 客户端
 ---
 
 # TCC-TRANSACTION客户端启动流程

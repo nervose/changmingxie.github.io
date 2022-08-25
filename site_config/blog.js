@@ -59,19 +59,26 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'TCC-TRANSACTION之server模式架构分析',
+        author: 'huabao.fang',
+        dateStr: '2022-08-17',
+        desc: '说明TCC-TRANSACTION的server模式架构设计的初衷，及实现原理',
+        link: '/zh-cn/blog/tcc-transaction-server.html',
+      },
+      {
+        title: 'TCC-TRANSACTION之调用流程分析',
+        author: 'huabao.fang',
+        dateStr: '2022-08-10',
+        desc: '从源码层面，分析TCC-TRANSACTION的调用流程',
+        link: '/zh-cn/blog/tcc-transaction-invoke.html',
+      },
+      {
         title: 'tcc-transaction-2.x发布',
         author: 'admin',
         dateStr: '2022-08-03',
         desc: '相对于1.x版本，功能更加丰富，扩展性更好',
         link: '/zh-cn/blog/tcc-transaction-2.x-release.html',
       },
-      {
-        title: 'TCC-TRANSACTION调用流程',
-        author: 'huabao.fang',
-        dateStr: '2022-07-24',
-        desc: '从源码层面，分析TCC-TRANSACTION的调用流程',
-        link: '/zh-cn/blog/tcc-transaction-invoke.html',
-      }
     ],
   },
 };

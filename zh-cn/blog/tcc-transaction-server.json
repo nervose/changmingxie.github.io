@@ -1,0 +1,8 @@
+{
+  "filename": "tcc-transaction-server.md",
+  "__html": "<h1 id=\"tcc-transaction%E4%B9%8Bserver%E6%A8%A1%E5%BC%8F%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90\">TCC-TRANSACTION之server模式架构分析 <a class=\"header-anchor\" href=\"#tcc-transaction%E4%B9%8Bserver%E6%A8%A1%E5%BC%8F%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90\">#</a></h1>\n<p>如<a href=\"/zh-cn/blog/tcc-transaction-invoke.html\">TCC-TRANSACTION调用流程</a>，我们了解了微服务调用中分布式事务是如何执行的。<br>\n本文意在说明server模式的设计初衷、实现原理。\nserver模式的设计目标为，进一步降低对业务服务的侵入，同时简化1.x中的繁琐配置。归结到底主要是两大块，即<strong>事务存储</strong>和<strong>事务补偿</strong>。<br>\n下图简单对比了1.x和2.x的业务服务的变化。<br>\n<img src=\"/img/tcc/1x_2x_compare.jpg\" alt=\"1x和2.x对比图\">\n从上图可以看出，2.x将1.x中的<strong>事务存储</strong>和<strong>事务补偿</strong>，挪到了<strong>tcc-server</strong>里面，原有的<strong>本地事务存储</strong>，改成了<strong>远程事务存储</strong>的方式。</p>\n<ul>\n<li>远程事务存储，对应实现类<strong>RemotingTransactionStorage</strong></li>\n<li>tcc-server，对应服务源码<a href=\"https://github.com/changmingxie/tcc-transaction/tree/master-2.x/tcc-transaction-server\">tcc-transaction-server</a></li>\n</ul>\n<p>后续待完善。。。</p>\n",
+  "link": "/zh-cn/blog/tcc-transaction-server.html",
+  "meta": {
+    "key1": "server架构"
+  }
+}
