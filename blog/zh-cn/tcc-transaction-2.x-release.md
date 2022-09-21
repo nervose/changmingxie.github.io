@@ -26,4 +26,6 @@ tcc-trasaction-2.x相对于之前版本，功能更加丰富，扩展性更好�
 ## 版本更新
 ### 2.0.0  
 已经内测，正式发布，[快速开始](/zh-cn/docs/tutorial/quickstart.html)   
+
+[查看最新Release版本](https://github.com/changmingxie/tcc-transaction/releases)
  
