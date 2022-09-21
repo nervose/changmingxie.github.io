@@ -30,7 +30,7 @@
 |spring.tcc.recovery.recoveryEnabled|是否开启补偿任务，用于客户端，建议storageType为非REMOTING时开启，为REMOTING时关闭|boolean | | 默认为true |
 |spring.tcc.recovery.maxRetryCount| 最大重试次数，recoveryEnabled为true时生效 |int | | 默认为30|
 |spring.tcc.recovery.recoverDuration| 补偿间隔时间，即补偿这个时间段之前的事件，recoveryEnabled为true时生效 |int|  | 默认为30，单位为秒|
-|spring.tcc.recovery.maxTimeTreatTryingAsFailed| 当事件处于trying状态达到一定时间后，系统自动置为失败，进而执行rollback操作。此参数当大于0时才生效，支持版本[2.0.1](https://github.com/changmingxie/tcc-transaction/releases/tag/2.0.1)|int|  | 默认为0，单位为秒|
+|spring.tcc.recovery.maxTimeTreatTryingAsFailed| 当事件处于trying状态达到指定时间后，系统自动置为失败，进而执行rollback操作。此参数当大于0时才生效，支持版本[2.0.1](https://github.com/changmingxie/tcc-transaction/releases/tag/2.0.1)|int|  | 默认为0，单位为秒|
 |spring.tcc.recovery.cronExpression| 补偿定时执行策略|String | | 默认为"0/30 * * * * ? " |
 |spring.tcc.recovery.fetchPageSize|每次补偿事件数|int | | 默认为200 |
 |spring.tcc.recovery.concurrentRecoveryThreadCount|事件并发补偿线程数|int | | 默认为Runtime.getRuntime().availableProcessors() * 2 |
@@ -62,7 +62,7 @@
 |**recovery配置**|
 |spring.tcc.recovery.maxRetryCount| 最大重试次数 |int | | 默认为30|
 |spring.tcc.recovery.recoverDuration| 补偿间隔时间，即补偿这个时间段之前的事件 |int|  | 默认为30，单位为秒|
-|spring.tcc.recovery.maxTimeTreatTryingAsFailed| 当事件处于trying状态达到一定时间后，系统自动置为失败，进而执行rollback操作。此参数当大于0时才生效，支持版本[2.0.1](https://github.com/changmingxie/tcc-transaction/releases/tag/2.0.1)|int|  | 默认为0，单位为秒|
+|spring.tcc.recovery.maxTimeTreatTryingAsFailed| 当事件处于trying状态达到指定时间后，系统自动置为失败，进而执行rollback操作。此参数当大于0时才生效，支持版本[2.0.1](https://github.com/changmingxie/tcc-transaction/releases/tag/2.0.1)|int|  | 默认为0，单位为秒|
 |spring.tcc.recovery.cronExpression| 补偿定时执行策略|String | | 默认为"0/30 * * * * ? " |
 |spring.tcc.recovery.fetchPageSize|每次补偿事件数|int | | 默认为200 |
 |spring.tcc.recovery.concurrentRecoveryThreadCount|事件并发补偿线程数|int | | 默认为Runtime.getRuntime().availableProcessors() * 2 |
