@@ -6,13 +6,8 @@
       "meta": {}
     },
     {
-      "filename": "demo2.md",
-      "link": "/en-us/docs/demo2.html",
-      "meta": {}
-    },
-    {
-      "filename": "demo3.md",
-      "link": "/en-us/docs/dir/demo3.html",
+      "filename": "demo1.md",
+      "link": "/en-us/aggdocs/demo1.html",
       "meta": {}
     }
   ],
@@ -233,6 +228,21 @@
     {
       "filename": "what-is-tcctransaction.md",
       "link": "/zh-cn/docs/what-is-tcctransaction.html",
+      "meta": {}
+    },
+    {
+      "filename": "faq.md",
+      "link": "/zh-cn/aggdocs/faq.html",
+      "meta": {}
+    },
+    {
+      "filename": "terminology.md",
+      "link": "/zh-cn/aggdocs/terminology.html",
+      "meta": {}
+    },
+    {
+      "filename": "what-is-aggregateframework.md",
+      "link": "/zh-cn/aggdocs/what-is-aggregateframework.html",
       "meta": {}
     }
   ]

@@ -72,9 +72,21 @@ export default {
         link: '/zh-cn/index.html',
       },
       {
-        key: 'docs',
+        key: 'doc',
         text: '文档',
-        link: '/zh-cn/docs/what-is-tcctransaction.html',
+        link: '',
+        children: [
+          {
+            key: 'tccdocs',
+            text: 'TCC文档',
+            link: '/zh-cn/docs/what-is-tcctransaction.html',
+          },
+          {
+            key: 'aggdocs',
+            text: 'AGG文档',
+            link: '/zh-cn/aggdocs/what-is-aggregateframework.html',
+          }
+        ]
       },
       {
         key: 'blog',

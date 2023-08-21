@@ -190,7 +190,8 @@ class Header extends React.Component {
                   })}
                   key={item.key}
                 >
-                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                  {item.link ? <span><a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a></span> : null}
+                  {item.children ? <div className="nav-container"><div className="word"><a >{item.text}</a></div><ul className="sub-nav-container" style={{ width: language === 'zh-cn' ? 220 : 290 }}>{item.children.map((child) => <li><a href={getLink(child.link)} target={child.target || '_self'}>{child.text}</a></li>)}</ul></div> : null}
                 </li>))}
             </ul>
           </div>
