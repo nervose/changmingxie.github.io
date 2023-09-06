@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "docsite start",
-    "build": "docsite build"
+    "start": "bin/docsite.js start",
+    "build": "bin/docsite.js build"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

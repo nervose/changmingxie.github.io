@@ -1,0 +1,6 @@
+{
+  "filename": "terminology.md",
+  "__html": "<h1 id=\"%E6%9C%AF%E8%AF%AD\">术语 <a class=\"header-anchor\" href=\"#%E6%9C%AF%E8%AF%AD\">#</a></h1>\n<h2 id=\"domain\">domain <a class=\"header-anchor\" href=\"#domain\">#</a></h2>\n<p>domain要保证唯一性，一般与服务一一对应，主要用于对事件隔离。</p>\n",
+  "link": "/zh-cn/aggdocs/terminology.html",
+  "meta": {}
+}

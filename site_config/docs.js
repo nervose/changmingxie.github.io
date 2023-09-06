@@ -1,29 +1,6 @@
 export default {
   'en-us': {
     sidemenu: [
-      {
-        title: 'header title',
-        children: [
-          {
-            title: 'demo1',
-            link: '/en-us/docs/demo1.html',
-          },
-          {
-            title: 'demo2',
-            link: '/en-us/docs/demo2.html',
-          },
-          {
-            title: 'dir',
-            opened: true,
-            children: [
-              {
-                title: 'demo3',
-                link: '/en-us/docs/dir/demo3.html',
-              },
-            ],
-          },
-        ],
-      },
     ],
     barText: 'Documentation',
   },
@@ -258,6 +235,6 @@ export default {
         ],
       },
     ],
-    barText: '文档',
+    barText: 'TCC文档',
   },
 };
