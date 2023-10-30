@@ -1,0 +1,6 @@
+{
+  "filename": "direct.md",
+  "__html": "<h1 id=\"%E7%9B%B4%E8%BF%9E\">直连 <a class=\"header-anchor\" href=\"#%E7%9B%B4%E8%BF%9E\">#</a></h1>\n<p>此种注册方式，直接配置server地址，适用于server地址固定的场景。<br>\n相关配置可如下:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-meta\">spring.agg.registry.registryType</span>=<span class=\"hljs-string\">direct</span>\n<span class=\"hljs-meta\">spring.agg.registry.direct.addressesForClient</span>=<span class=\"hljs-string\">127.0.0.1:2332</span>\n<span class=\"hljs-meta\">spring.agg.registry.direct.addressesForDashboard</span>=<span class=\"hljs-string\">127.0.0.1:12332</span>\n</code></pre>\n",
+  "link": "/zh-cn/aggdocs/tutorial/registry/direct.html",
+  "meta": {}
+}

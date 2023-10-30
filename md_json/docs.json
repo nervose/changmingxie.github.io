@@ -236,8 +236,153 @@
       "meta": {}
     },
     {
+      "filename": "dashboard-guild.md",
+      "link": "/zh-cn/aggdocs/ops/dashboard/dashboard-guild.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy.md",
+      "link": "/zh-cn/aggdocs/ops/dashboard/deploy.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/aggdocs/ops/dashboard/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy.md",
+      "link": "/zh-cn/aggdocs/ops/server/deploy.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/aggdocs/ops/server/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "upgrade.md",
+      "link": "/zh-cn/aggdocs/ops/upgrade.html",
+      "meta": {}
+    },
+    {
       "filename": "terminology.md",
       "link": "/zh-cn/aggdocs/terminology.html",
+      "meta": {}
+    },
+    {
+      "filename": "api.md",
+      "link": "/zh-cn/aggdocs/tutorial/api.html",
+      "meta": {}
+    },
+    {
+      "filename": "configurations.md",
+      "link": "/zh-cn/aggdocs/tutorial/configurations.html",
+      "meta": {}
+    },
+    {
+      "filename": "embedded.md",
+      "link": "/zh-cn/aggdocs/tutorial/connectionmode/embedded.html",
+      "meta": {}
+    },
+    {
+      "filename": "server.md",
+      "link": "/zh-cn/aggdocs/tutorial/connectionmode/server.html",
+      "meta": {}
+    },
+    {
+      "filename": "eventhandler.md",
+      "link": "/zh-cn/aggdocs/tutorial/eventhandler.html",
+      "meta": {}
+    },
+    {
+      "filename": "quickstart.md",
+      "link": "/zh-cn/aggdocs/tutorial/quickstart.html",
+      "meta": {}
+    },
+    {
+      "filename": "custom.md",
+      "link": "/zh-cn/aggdocs/tutorial/registry/custom.html",
+      "meta": {}
+    },
+    {
+      "filename": "direct.md",
+      "link": "/zh-cn/aggdocs/tutorial/registry/direct.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/aggdocs/tutorial/registry/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "nacos.md",
+      "link": "/zh-cn/aggdocs/tutorial/registry/nacos.html",
+      "meta": {}
+    },
+    {
+      "filename": "zookeeper.md",
+      "link": "/zh-cn/aggdocs/tutorial/registry/zookeeper.html",
+      "meta": {}
+    },
+    {
+      "filename": "custom.md",
+      "link": "/zh-cn/aggdocs/tutorial/serializer/custom.html",
+      "meta": {}
+    },
+    {
+      "filename": "fastjson.md",
+      "link": "/zh-cn/aggdocs/tutorial/serializer/fastjson.html",
+      "meta": {}
+    },
+    {
+      "filename": "index.md",
+      "link": "/zh-cn/aggdocs/tutorial/serializer/index.html",
+      "meta": {}
+    },
+    {
+      "filename": "kryo.md",
+      "link": "/zh-cn/aggdocs/tutorial/serializer/kryo.html",
+      "meta": {}
+    },
+    {
+      "filename": "custom.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/custom.html",
+      "meta": {}
+    },
+    {
+      "filename": "jdbc.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/jdbc.html",
+      "meta": {}
+    },
+    {
+      "filename": "memory.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/memory.html",
+      "meta": {}
+    },
+    {
+      "filename": "redis-cluster.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/redis-cluster.html",
+      "meta": {}
+    },
+    {
+      "filename": "redis.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/redis.html",
+      "meta": {}
+    },
+    {
+      "filename": "remoting.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/remoting.html",
+      "meta": {}
+    },
+    {
+      "filename": "rocksdb.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/rocksdb.html",
+      "meta": {}
+    },
+    {
+      "filename": "shard-redis.md",
+      "link": "/zh-cn/aggdocs/tutorial/storagetype/shard-redis.html",
       "meta": {}
     },
     {

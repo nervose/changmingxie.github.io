@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="configurations" />
+	<meta name="description" content="configurations" />
+	<!-- 网页标签标题 -->
+	<title>configurations</title>
+	<link rel="shortcut icon" href="/img/tcc_logo.png"/>
+	<link rel="stylesheet" href="/build/aggDocumentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/tcc_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><span><a href="/zh-cn/index.html" target="_self">首页</a></span></li><li class="menu-item menu-item-normal"><div class="nav-container"><div class="word"><a>文档</a></div><ul class="sub-nav-container" style="width:220px"><li><a href="/zh-cn/docs/what-is-tcctransaction.html" target="_self">TCC文档</a></li><li><a href="/zh-cn/aggdocs/what-is-aggregateframework.html" target="_self">AGG文档</a></li></ul></div></li><li class="menu-item menu-item-normal"><span><a href="/zh-cn/blog/index.html" target="_self">博客</a></span></li><li class="menu-item menu-item-normal"><span><a href="/zh-cn/community/index.html" target="_self">社区</a></span></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>AGG文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>概述</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/what-is-aggregateframework.html" target="_self">AGGREGATE-FRAMEWORK是什么</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/terminology.html" target="_self">术语</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/faq.html" target="_self">FAQ</a></li></ul></li><li class="menu-item menu-item-level-1"><span>用户指南</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/tutorial/quickstart.html" target="_self">快速开始</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/tutorial/configurations.html" target="_self">参数配置</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/tutorial/api.html" target="_self">API支持</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/tutorial/eventhandler.html" target="_self">事件处理器</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>连接模式<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/connectionmode/embedded.html" target="_self">embedded模式</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/connectionmode/server.html" target="_self">server模式</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>存储类型<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/memory.html" target="_self">memory</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/rocksdb.html" target="_self">rocksdb</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/jdbc.html" target="_self">jdbc</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/redis.html" target="_self">redis</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/shard-redis.html" target="_self">shard-redis</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/redis-cluster.html" target="_self">redis-cluster</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/remoting.html" target="_self">remoting</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/storagetype/custom.html" target="_self">custom</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>事件序列化<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/serializer/index.html" target="_self">说明</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/serializer/kryo.html" target="_self">kryo</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/serializer/fastjson.html" target="_self">fastjson</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/serializer/custom.html" target="_self">custom</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>注册中心支持<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/registry/index.html" target="_self">说明</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/registry/direct.html" target="_self">direct</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/registry/nacos.html" target="_self">nacos</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/registry/zookeeper.html" target="_self">zookeeper</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/tutorial/registry/custom.html" target="_self">custom</a></li></ul></li></ul></li><li class="menu-item menu-item-level-1"><span>运维指南</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/ops/upgrade.html" target="_self">版本升级指南</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>server部署<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/ops/server/index.html" target="_self">部署说明</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/ops/server/deploy.html" target="_self">部署示例</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>dashboard部署<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/ops/dashboard/index.html" target="_self">部署说明</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/aggdocs/ops/dashboard/deploy.html" target="_self">部署示例</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/aggdocs/ops/dashboard/dashboard-guild.html" target="_self">dashboard使用手册</a></li></ul></li></ul></div><div class="doc-content markdown-body"><h1 id="%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">参数配置 <a class="header-anchor" href="#%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">#</a></h1>
+<p>此处参数配置，针对aggregate-framework-4.x版本。<br>
+采用application.yaml(或properties)方式配置<br>
+参数分为三类：</p>
+<ul>
+<li><a href="#client%E7%AB%AF">client端</a></li>
+<li><a href="#server%E7%AB%AF">server端</a></li>
+<li><a href="#dashboard">dashboard</a></li>
+</ul>
+<h2 id="client%E7%AB%AF">client端 <a class="header-anchor" href="#client%E7%AB%AF">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>storage配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.domain</td>
+<td style="text-align:left">事件域，用于事件隔离，<a href="/zh-cn/aggdocs/terminology.html#domain">详见</a></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;AGG&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.storageType</td>
+<td style="text-align:left">事件的存储类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">REMOTING、MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED</td>
+<td style="text-align:left">MEMORY</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.transactionStorageClass</td>
+<td style="text-align:left">自定义事件存储类，storageType为CUSTOMIZED时用</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.customStorageProperties</td>
+<td style="text-align:left">自定义事件存储类的配置属性，storageType为CUSTOMIZED时用到</td>
+<td style="text-align:left">Map&lt;String,Object&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.serializerType</td>
+<td style="text-align:left">事件的序列化方式</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">KRYO、FASTJSON、CUSTOMIZED</td>
+<td style="text-align:left">KRYO</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.transactionSerializerClassName</td>
+<td style="text-align:left">自定义序列化方式全类名，serializerType为CUSTOMIZED时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.kryoPoolSize</td>
+<td style="text-align:left">kryo实例池大小，serializerType为KRYO时用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">512</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.maxTransactionSize</td>
+<td style="text-align:left">事件支持的最大字节数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1MB</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.maxAttempts</td>
+<td style="text-align:left">事件操作(插入、更新)尝试次数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2，即失败一次后，再重试一次</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.requestTimeoutMillis</td>
+<td style="text-align:left">请求服务端的超时时间，storageType为REMOTING时用到</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.location</td>
+<td style="text-align:left">事件的存储路径，storageType为ROCKSDB时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">'/tmp'</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.tbSuffix</td>
+<td style="text-align:left">事件表后缀名，storageType为JDBC时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.jdbc</td>
+<td style="text-align:left">jdbc配置，storageType为JDBC时用到</td>
+<td style="text-align:left"><a href="#jdbcstoreproperties">JdbcStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redis</td>
+<td style="text-align:left">redis配置，storageType为REDIS时用到</td>
+<td style="text-align:left"><a href="#redisstoreproperties">RedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.shardRedis</td>
+<td style="text-align:left">shardRedis配置，storageType为SHARD_REDIS时用到</td>
+<td style="text-align:left"><a href="#shardredisstoreproperties">ShardRedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redisCluster</td>
+<td style="text-align:left">redisCluster配置，storageType为REDIS_CLUSTER时用到</td>
+<td style="text-align:left"><a href="#redisclusterstoreproperties">RedisClusterStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>recovery配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.recoveryEnabled</td>
+<td style="text-align:left">是否开启补偿任务，建议storageType为非REMOTING时开启，为REMOTING时关闭</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.maxRetryCount</td>
+<td style="text-align:left">最大重试次数，recoveryEnabled为true时生效</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">30</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.recoverDuration</td>
+<td style="text-align:left">补偿间隔时间，即补偿这个时间段之前的事件，recoveryEnabled为true时生效</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">30s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.cronExpression</td>
+<td style="text-align:left">补偿定时执行策略</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;0/30 * * * * ? &quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.fetchPageSize</td>
+<td style="text-align:left">每次补偿事件数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">200</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.concurrentRecoveryThreadCount</td>
+<td style="text-align:left">事件并发补偿线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.updateJobForcibly</td>
+<td style="text-align:left">是否强制更新Job，用于服务端</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzThreadPoolThreadCount</td>
+<td style="text-align:left">quartz任务执行线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2 + 1</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzClustered</td>
+<td style="text-align:left">是否采用Quartz集群模式，生产环境建议使用集群模式</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceDriver</td>
+<td style="text-align:left">数据源驱动类，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;com.mysql.jdbc.Driver&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUrl</td>
+<td style="text-align:left">数据源地址，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;connectTimeout=1000&amp;socketTimeout=5000&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUser</td>
+<td style="text-align:left">数据源用户名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;root&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourcePassword</td>
+<td style="text-align:left">数据源用户密码，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;welcome1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceValidationQuery</td>
+<td style="text-align:left">数据源连接验证语句，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;select 1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceCheckoutTimeout</td>
+<td style="text-align:left">获取数据源连接的超时时间，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceInitialPoolSize</td>
+<td style="text-align:left">数据源连接池的初始大小，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMinPoolSize</td>
+<td style="text-align:left">数据源连接池的最小连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMaxPoolSize</td>
+<td style="text-align:left">数据源连接池的最大连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的全类名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">空，使用内置的connectionProvider</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的配置属性，quartzClustered为true用到</td>
+<td style="text-align:left">Map&lt;String,String&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>registry配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryRole</td>
+<td style="text-align:left">注册角色类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">CLIENT</td>
+<td style="text-align:left">CLIENT</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.clusterName</td>
+<td style="text-align:left">集群名称</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;default&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryType</td>
+<td style="text-align:left">注册中心类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">direct、zookeeper、nacos、custom</td>
+<td style="text-align:left">direct</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.customRegistryName</td>
+<td style="text-align:left">自定义注册中心，registryType为custom时用到，便于使用方扩展</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.direct</td>
+<td style="text-align:left">direct配置，registryType为direct时用到</td>
+<td style="text-align:left"><a href="#directregistryproperties">DirectRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.zookeeper</td>
+<td style="text-align:left">zookeeper配置，registryType为zookeeper时用到</td>
+<td style="text-align:left"><a href="#zookeeperregistryproperties">ZookeeperRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.nacos</td>
+<td style="text-align:left">nacos配置，registryType为nacos时用到</td>
+<td style="text-align:left"><a href="#nacosregistryproperties">NacosRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>remoting配置，storageType为REMOTING时用到</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.connectTimeoutMillis</td>
+<td style="text-align:left">连接超时时间</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelMaxIdleTimeSeconds</td>
+<td style="text-align:left">(未发生write调用时)写检测的心跳间隔时间，需要小于server端的channelIdleTimeoutSeconds</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">20s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.reconnectIntervalSeconds</td>
+<td style="text-align:left">重连间隔时间（暂未实际使用)</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">5s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.workerThreadSize</td>
+<td style="text-align:left">执行ChannelHandler的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketBacklog</td>
+<td style="text-align:left">临时存放已完成三次握手的请求的队列的最大长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">512</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketRcvBufSize</td>
+<td style="text-align:left">接受缓冲区大小</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">153600</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketSndBufSize</td>
+<td style="text-align:left">发送缓冲区大小</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">153600</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.frameMaxLength</td>
+<td style="text-align:left">请求的最大帧长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2MB</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.workSelectorThreadSize</td>
+<td style="text-align:left">用于处理各种channel事件的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors()</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.requestProcessThreadSize</td>
+<td style="text-align:left">处理事件读写读写请求的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2 + 1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.requestProcessThreadQueueCapacity</td>
+<td style="text-align:left">处理事件读写请求的等待队列长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1024</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolMaxTotal</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">-1,无限制</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolMinIdlePerKey</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolMaxIdlePerKey</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolMaxTotalPerKey</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolMaxWaitMillis</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">300ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolTimeBetweenEvictionRunsMillis</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelPoolSoftMinEvictableIdleTimeMillis</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">30min</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.numTestsPerEvictionRun</td>
+<td style="text-align:left">channel连接池的相关配置</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="server%E7%AB%AF">server端 <a class="header-anchor" href="#server%E7%AB%AF">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">server.port</td>
+<td style="text-align:left">web端口，主要服务于dashboard</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">12332</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>storage配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.storageType</td>
+<td style="text-align:left">存储类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED，<strong>不支持REMOTING</strong></td>
+<td style="text-align:left">MEMORY</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.transactionStorageClass</td>
+<td style="text-align:left">自定义事件存储类，storageType为CUSTOMIZED时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.customStorageProperties</td>
+<td style="text-align:left">自定义事件存储类的配置属性，storageType为CUSTOMIZED时用到</td>
+<td style="text-align:left">Map&lt;String,Object&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.maxTransactionSize</td>
+<td style="text-align:left">事件支持的最大字节数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1MB</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.location</td>
+<td style="text-align:left">事件的存储路径，storageType为ROCKSDB时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">'/tmp'</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.tbSuffix</td>
+<td style="text-align:left">事件表后缀名，storageType为JDBC时用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.jdbc</td>
+<td style="text-align:left">jdbc配置，storageType为JDBC时用到</td>
+<td style="text-align:left"><a href="#jdbcstoreproperties">JdbcStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redis</td>
+<td style="text-align:left">redis配置，storageType为REDIS时用到</td>
+<td style="text-align:left"><a href="#redisstoreproperties">RedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.shardRedis</td>
+<td style="text-align:left">shardRedis配置，storageType为SHARD_REDIS时用到</td>
+<td style="text-align:left"><a href="#shardredisstoreproperties">ShardRedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redisCluster</td>
+<td style="text-align:left">redisCluster配置，storageType为REDIS_CLUSTER时用到</td>
+<td style="text-align:left"><a href="#redisclusterstoreproperties">RedisClusterStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>recovery配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.maxRetryCount</td>
+<td style="text-align:left">最大重试次数，recoveryEnabled为true时生效</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">30</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.recoverDuration</td>
+<td style="text-align:left">补偿间隔时间，即补偿这个时间段之前的事件，recoveryEnabled为true时生效</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">30s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.cronExpression</td>
+<td style="text-align:left">补偿定时执行策略</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;0/30 * * * * ? &quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.fetchPageSize</td>
+<td style="text-align:left">每次补偿事件数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">200</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.concurrentRecoveryThreadCount</td>
+<td style="text-align:left">事件并发补偿线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.updateJobForcibly</td>
+<td style="text-align:left">是否强制更新Job，用于服务端</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzThreadPoolThreadCount</td>
+<td style="text-align:left">quartz任务执行线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2 + 1</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzClustered</td>
+<td style="text-align:left">是否采用Quartz集群模式，生产环境建议使用集群模式</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceDriver</td>
+<td style="text-align:left">数据源驱动类，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;com.mysql.jdbc.Driver&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUrl</td>
+<td style="text-align:left">数据源地址，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;connectTimeout=1000&amp;socketTimeout=5000&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUser</td>
+<td style="text-align:left">数据源用户名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;root&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourcePassword</td>
+<td style="text-align:left">数据源用户密码，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;welcome1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceValidationQuery</td>
+<td style="text-align:left">数据源连接验证语句，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;select 1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceCheckoutTimeout</td>
+<td style="text-align:left">获取数据源连接的超时时间，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceInitialPoolSize</td>
+<td style="text-align:left">数据源连接池的初始大小，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMinPoolSize</td>
+<td style="text-align:left">数据源连接池的最小连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMaxPoolSize</td>
+<td style="text-align:left">数据源连接池的最大连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的全类名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">空，使用内置的connectionProvider</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的配置属性，quartzClustered为true用到</td>
+<td style="text-align:left">Map&lt;String,String&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>registry配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.clusterName</td>
+<td style="text-align:left">集群名称</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;default&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryAddress</td>
+<td style="text-align:left">需要注册的server地址</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">空，会尝试根据网卡信息获取有效的IP地址</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryPortForDashboard</td>
+<td style="text-align:left">需要注册的供dashboard使用的端口</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">12332(应与server.port一致)</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryType</td>
+<td style="text-align:left">注册中心类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">direct、zookeeper、nacos、custom</td>
+<td style="text-align:left">direct</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.customRegistryName</td>
+<td style="text-align:left">自定义注册中心，registryType为custom时用到，便于使用方扩展</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.direct</td>
+<td style="text-align:left">direct配置，registryType为direct时用到</td>
+<td style="text-align:left"><a href="#directregistryproperties">DirectRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.zookeeper</td>
+<td style="text-align:left">zookeeper配置，registryType为zookeeper时用到</td>
+<td style="text-align:left"><a href="#zookeeperregistryproperties">ZookeeperRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.nacos</td>
+<td style="text-align:left">nacos配置，registryType为nacos时用到</td>
+<td style="text-align:left"><a href="#nacosregistryproperties">NacosRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>remoting配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.listen-port</td>
+<td style="text-align:left">netty服务端口，主要服务于client端</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2332</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.channelIdleTimeoutSeconds</td>
+<td style="text-align:left">闲置channel的超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">60s</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.flowMonitorPrintIntervalMinutes</td>
+<td style="text-align:left">流量监控间隔时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">5min</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.workerThreadSize</td>
+<td style="text-align:left">执行ChannelHandler的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketBacklog</td>
+<td style="text-align:left">临时存放已完成三次握手的请求的队列的最大长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">512</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketRcvBufSize</td>
+<td style="text-align:left">接受缓冲区大小</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">153600</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.socketSndBufSize</td>
+<td style="text-align:left">发送缓冲区大小</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">153600</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.frameMaxLength</td>
+<td style="text-align:left">请求的最大帧长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2MB</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.workSelectorThreadSize</td>
+<td style="text-align:left">用于处理各种channel事件的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors()</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.requestProcessThreadSize</td>
+<td style="text-align:left">处理事件读写读写请求的线程数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Runtime.getRuntime().availableProcessors() * 2 + 1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.remoting.requestProcessThreadQueueCapacity</td>
+<td style="text-align:left">处理事件读写请求的等待队列长度</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1024</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dashbaord">dashbaord <a class="header-anchor" href="#dashbaord">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>dashboard配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.dashboard.userName</td>
+<td style="text-align:left">dashboard用户名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;admin&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.dashboard.password</td>
+<td style="text-align:left">dashboard密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;123456&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.dashboard.connectionMode</td>
+<td style="text-align:left">连接模式</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">EMBEDDED，SERVER</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>registry配置，connectionMode为SERVER时用到</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">feign.path</td>
+<td style="text-align:left">调用server的请求路径前缀，connectionMode为SERVER时用到</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.clusterName</td>
+<td style="text-align:left">集群名称</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;default&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryRole</td>
+<td style="text-align:left">注册角色类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">DASHBOARD</td>
+<td style="text-align:left">CLIENT，<strong>注意</strong>请配置为DASHBOARD</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.registryType</td>
+<td style="text-align:left">注册中心类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">取值：direct、zookeeper、nacos</td>
+<td style="text-align:left">默认为direct</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.direct</td>
+<td style="text-align:left">direct配置，registryType为direct时用到，<strong>注意</strong>这里配置的是server端的http地址</td>
+<td style="text-align:left"><a href="#directregistryproperties">DirectRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.zookeeper</td>
+<td style="text-align:left">zookeeper配置，registryType为zookeeper时用到</td>
+<td style="text-align:left"><a href="#zookeeperregistryproperties">ZookeeperRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.registry.nacos</td>
+<td style="text-align:left">nacos配置，registryType为nacos时用到</td>
+<td style="text-align:left"><a href="#nacosregistryproperties">NacosRegistryProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>storage配置，connectionMode为EMBEDDED时用到</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.storageType</td>
+<td style="text-align:left">存储类型</td>
+<td style="text-align:left">枚举</td>
+<td style="text-align:left">支持模式有：MEMORY、ROCKSDB、JDBC、REDIS、SHARD_REDIS、REDIS_CLUSTER、CUSTOMIZED</td>
+<td style="text-align:left">默认为MEMORY</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.transactionStorageClass</td>
+<td style="text-align:left">自定义事件存储类，storageType为CUSTOMIZED时用</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.customStorageProperties</td>
+<td style="text-align:left">自定义事件存储类的配置属性，storageType为CUSTOMIZED时用到</td>
+<td style="text-align:left">Map&lt;String,Object&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.jdbc</td>
+<td style="text-align:left">jdbc配置，storageType为JDBC时用</td>
+<td style="text-align:left"><a href="#jdbcstoreproperties">JdbcStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redis</td>
+<td style="text-align:left">redis配置，storageType为REDIS时用</td>
+<td style="text-align:left"><a href="#redisstoreproperties">RedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.shardRedis</td>
+<td style="text-align:left">shardRedis配置，storageType为SHARD_REDIS时用</td>
+<td style="text-align:left"><a href="#shardredisstoreproperties">ShardRedisStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.storage.redisCluster</td>
+<td style="text-align:left">redisCluster配置，storageType为REDIS_CLUSTER时用</td>
+<td style="text-align:left"><a href="#redisclusterstoreproperties">RedisClusterStoreProperties</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>recovery配置</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.recoveryEnabled</td>
+<td style="text-align:left">是否开启补偿任务</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">true，<strong>注意</strong>请配置为false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzClustered</td>
+<td style="text-align:left">是否采用Quartz集群模式，如果connectionMode为SERVER时，建议使用集群模式，便于对任务管理</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">默认为false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.updateJobForcibly</td>
+<td style="text-align:left">是否强制更新Job，用于服务端</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">false</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceDriver</td>
+<td style="text-align:left">数据源驱动类，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;com.mysql.jdbc.Driver&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUrl</td>
+<td style="text-align:left">数据源地址，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;connectTimeout=1000&amp;socketTimeout=5000&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceUser</td>
+<td style="text-align:left">数据源用户名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;root&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourcePassword</td>
+<td style="text-align:left">数据源用户密码，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;welcome1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceValidationQuery</td>
+<td style="text-align:left">数据源连接验证语句，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;select 1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceCheckoutTimeout</td>
+<td style="text-align:left">获取数据源连接的超时时间，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceInitialPoolSize</td>
+<td style="text-align:left">数据源连接池的初始大小，quartzClustered为true用到</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMinPoolSize</td>
+<td style="text-align:left">数据源连接池的最小连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.quartzDataSourceMaxPoolSize</td>
+<td style="text-align:left">数据源连接池的最大连接数，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的全类名，quartzClustered为true用到</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">空，使用内置的connectionProvider</td>
+</tr>
+<tr>
+<td style="text-align:left">spring.agg.recovery.customConnectionProviderClassName</td>
+<td style="text-align:left">自定义connectionProvider的配置属性，quartzClustered为true用到</td>
+<td style="text-align:left">Map&lt;String,String&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E5%85%AC%E5%85%B1%E9%85%8D%E7%BD%AE">公共配置 <a class="header-anchor" href="#%E5%85%AC%E5%85%B1%E9%85%8D%E7%BD%AE">#</a></h2>
+<h3 id="jdbcstoreproperties">JdbcStoreProperties <a class="header-anchor" href="#jdbcstoreproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">driverClass</td>
+<td style="text-align:left">jdbc驱动类</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;com.mysql.jdbc.Driver&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">jdbcUrl</td>
+<td style="text-align:left">jdbc链接地址</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;jdbc:mysql://127.0.0.1:3306/AGG?useSSL=false&amp;connectTimeout=1000&amp;socketTimeout=5000&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;root&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;welcome1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">initialPoolSize</td>
+<td style="text-align:left">初始连接池数，详见<a href="https://www.mchange.com/projects/c3p0">c3p0</a></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">minPoolSize</td>
+<td style="text-align:left">最小连接池数，详见<a href="https://www.mchange.com/projects/c3p0">c3p0</a></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">maxPoolSize</td>
+<td style="text-align:left">最大连接池数，详见<a href="https://www.mchange.com/projects/c3p0">c3p0</a></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">50</td>
+</tr>
+<tr>
+<td style="text-align:left">checkoutTimeout</td>
+<td style="text-align:left">获取连接的超时时间，详见<a href="https://www.mchange.com/projects/c3p0">c3p0</a></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="redisstoreproperties">RedisStoreProperties <a class="header-anchor" href="#redisstoreproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">host</td>
+<td style="text-align:left">主机名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;127.0.0.1&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">port</td>
+<td style="text-align:left">端口</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">6379</td>
+</tr>
+<tr>
+<td style="text-align:left">database</td>
+<td style="text-align:left">数据库索引</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">soTimeout</td>
+<td style="text-align:left">数据响应时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">connectionTimeout</td>
+<td style="text-align:left">连接超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">poolConfig</td>
+<td style="text-align:left">线程池配置</td>
+<td style="text-align:left"><a href="#poolconfig">PoolConfig</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="shardredisstoreproperties">ShardRedisStoreProperties <a class="header-anchor" href="#shardredisstoreproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nodes</td>
+<td style="text-align:left">节点配置集合</td>
+<td style="text-align:left">Set&lt;<a href="#hostandport">HostAndPort</a>&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">soTimeout</td>
+<td style="text-align:left">数据响应时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">connectionTimeout</td>
+<td style="text-align:left">连接超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">poolConfig</td>
+<td style="text-align:left">线程池配置</td>
+<td style="text-align:left"><a href="#poolconfig">PoolConfig</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="redisclusterstoreproperties">RedisClusterStoreProperties <a class="header-anchor" href="#redisclusterstoreproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nodes</td>
+<td style="text-align:left">节点配置集合</td>
+<td style="text-align:left">Set&lt;<a href="#hostandport">HostAndPort</a>&gt;</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">maxAttempts</td>
+<td style="text-align:left">最大重试次数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">soTimeout</td>
+<td style="text-align:left">数据响应时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">connectionTimeout</td>
+<td style="text-align:left">连接超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000ms</td>
+</tr>
+<tr>
+<td style="text-align:left">poolConfig</td>
+<td style="text-align:left">线程池配置</td>
+<td style="text-align:left"><a href="#poolconfig">PoolConfig</a></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="directregistryproperties">DirectRegistryProperties <a class="header-anchor" href="#directregistryproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">addressesForClient</td>
+<td style="text-align:left">用于Client的服务地址，多个以英文逗号分割</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;127.0.0.1:2332&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">addressesForDashboard</td>
+<td style="text-align:left">用于Dashboard的服务地址，多个以英文逗号分割</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;127.0.0.1:12332&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="zookeeperregistryproperties">ZookeeperRegistryProperties <a class="header-anchor" href="#zookeeperregistryproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">connectString</td>
+<td style="text-align:left">zookeeper连接地址</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;127.0.0.1:2181&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">sessionTimeout</td>
+<td style="text-align:left">session超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">10s</td>
+</tr>
+<tr>
+<td style="text-align:left">connectTimeout</td>
+<td style="text-align:left">连接超时时间</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2s</td>
+</tr>
+<tr>
+<td style="text-align:left">digest</td>
+<td style="text-align:left">认证用户名密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">空，不用认证</td>
+</tr>
+<tr>
+<td style="text-align:left">baseSleepTime</td>
+<td style="text-align:left">两次重试等待的初始值</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">500ms</td>
+</tr>
+<tr>
+<td style="text-align:left">maxRetries</td>
+<td style="text-align:left">最大重试次数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nacosregistryproperties">NacosRegistryProperties <a class="header-anchor" href="#nacosregistryproperties">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">nacos用户名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;nacos&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">nacos密码</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;nacos&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">serverAddr</td>
+<td style="text-align:left">nacos注册地址</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;127.0.0.1:8848&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">namespace</td>
+<td style="text-align:left">nacos命名空间</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;public&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">group</td>
+<td style="text-align:left">nacos组</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;AGG_GROUP&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">serviceNameForClient</td>
+<td style="text-align:left">用于Client的服务名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;agg-server-for-client&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left">serviceNameForClient</td>
+<td style="text-align:left">用于Dashboard的服务名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">&quot;agg-server-for-dashboard&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="poolconfig">PoolConfig <a class="header-anchor" href="#poolconfig">#</a></h3>
+<p>这里只列出了一下常用的线程池配置</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">maxTotal</td>
+<td style="text-align:left">最大实例数</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">maxIdle</td>
+<td style="text-align:left">最大空闲实例数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">300</td>
+</tr>
+<tr>
+<td style="text-align:left">minIdle</td>
+<td style="text-align:left">最小空闲实例数</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">1000</td>
+</tr>
+<tr>
+<td style="text-align:left">maxWaitMillis</td>
+<td style="text-align:left">最大等待时间</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="hostandport">HostAndPort <a class="header-anchor" href="#hostandport">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><div style="width:50px">参数名</div></th>
+<th style="text-align:left"><div style="width:200px">含义</div></th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">可选值</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">host</td>
+<td style="text-align:left">主机名</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">port</td>
+<td style="text-align:left">端口</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">database</td>
+<td style="text-align:left">数据库索引</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0</td>
+</tr>
+</tbody>
+</table>
+</div></section><footer class="footer-container"><div class="footer-body"><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/what-is-tcctransaction.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2022 TCC-TRANSACTION</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/aggDocumentation.js"></script>
+</body>
+</html>

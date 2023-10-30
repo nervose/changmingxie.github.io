@@ -1,6 +1,6 @@
 {
   "filename": "terminology.md",
-  "__html": "<h1 id=\"%E6%9C%AF%E8%AF%AD\">术语 <a class=\"header-anchor\" href=\"#%E6%9C%AF%E8%AF%AD\">#</a></h1>\n<h2 id=\"domain\">domain <a class=\"header-anchor\" href=\"#domain\">#</a></h2>\n<p>domain要保证唯一性，一般与服务一一对应，主要用于对事件隔离。</p>\n",
+  "__html": "<h1 id=\"%E6%9C%AF%E8%AF%AD\">术语 <a class=\"header-anchor\" href=\"#%E6%9C%AF%E8%AF%AD\">#</a></h1>\n<h2 id=\"%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%B1%A1\">领域对象 <a class=\"header-anchor\" href=\"#%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%B1%A1\">#</a></h2>\n<p>具有唯一标识，一般与数据库持久化对象存在一对一的关系。依附于聚合根，生命周期由聚合根统一管理。</p>\n<h2 id=\"%E8%81%9A%E5%90%88%E6%A0%B9\">聚合根 <a class=\"header-anchor\" href=\"#%E8%81%9A%E5%90%88%E6%A0%B9\">#</a></h2>\n<p>聚合根是一种特殊的领域对象，具有全局唯一标识，有独立的生命周期，聚合根在聚合内对领域对象采用直接引用的方式进行组织和协调。</p>\n<h2 id=\"%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6\">领域事件 <a class=\"header-anchor\" href=\"#%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6\">#</a></h2>\n<p>发生在一个领域中，但被其他领域所关注的事件，用于降低不同领域间的耦合性。</p>\n<h2 id=\"domain\">domain <a class=\"header-anchor\" href=\"#domain\">#</a></h2>\n<p>domain要保证唯一性，一般与服务一一对应，主要用于对事件隔离。</p>\n",
   "link": "/zh-cn/aggdocs/terminology.html",
   "meta": {}
 }

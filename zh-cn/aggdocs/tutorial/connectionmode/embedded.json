@@ -1,0 +1,6 @@
+{
+  "filename": "embedded.md",
+  "__html": "<h1 id=\"embedded%E6%A8%A1%E5%BC%8F\">embedded模式 <a class=\"header-anchor\" href=\"#embedded%E6%A8%A1%E5%BC%8F\">#</a></h1>\n<p>此模式是区分server模式而言，此模式需要嵌入存储的场景。<br>\n当前支持的存储方式有：</p>\n<ul>\n<li>memory</li>\n<li>rocksdb</li>\n<li>jdbc</li>\n<li>redis</li>\n<li>shard_redis</li>\n<li>redis_cluster</li>\n</ul>\n<p><a href=\"/zh-cn/aggdocs/tutorial/quickstart/embedded-sample.html\">embedded模式示例</a></p>\n<h2 id=\"%E6%9E%B6%E6%9E%84\">架构 <a class=\"header-anchor\" href=\"#%E6%9E%B6%E6%9E%84\">#</a></h2>\n<p><img src=\"../../img/embedded_mode.jpeg\" alt=\"embedded模式架构图\"></p>\n",
+  "link": "/zh-cn/aggdocs/tutorial/connectionmode/embedded.html",
+  "meta": {}
+}
