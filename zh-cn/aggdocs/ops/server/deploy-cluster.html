@@ -19,216 +19,27 @@
 任务部署方式推荐采用：quartz集群模式</p>
 <p>以下以注册中心[nacos]+存储类型[redis]+任务部署类型[quartz集群模式]这种组合为例。</p>
 <h2 id="%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5">准备阶段 <a class="header-anchor" href="#%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5">#</a></h2>
-<h3 id="%E5%87%86%E5%A4%87%E8%87%B3%E5%B0%91%E4%B8%A4%E5%8F%B0%E6%9C%BA%E5%99%A8">准备至少两台机器 <a class="header-anchor" href="#%E5%87%86%E5%A4%87%E8%87%B3%E5%B0%91%E4%B8%A4%E5%8F%B0%E6%9C%BA%E5%99%A8">#</a></h3>
-<p>实例1：192.168.108.179<br>
-实例2：192.168.108.28<br>
-<strong>注意</strong>: 对于nacos、redis、mysql正常情况是需要独立实例部署的，这里考虑到机器资源有限，暂时在实例1上部署了。</p>
-<h3 id="%E5%AE%89%E8%A3%85nacos">安装nacos <a class="header-anchor" href="#%E5%AE%89%E8%A3%85nacos">#</a></h3>
-<p>地址为：192.168.108.179:8848</p>
-<h3 id="%E5%AE%89%E8%A3%85redis">安装redis <a class="header-anchor" href="#%E5%AE%89%E8%A3%85redis">#</a></h3>
-<p>地址为：192.168.108.179:6379</p>
+<p><strong>注意</strong>: 对于agg-server、nacos、redis、mysql正常情况是需要独立实例部署的，这里考虑到机器资源有限，暂时部署在同一机器上。</p>
+<h3 id="%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8nacos%E6%9C%8D%E5%8A%A1">安装并启动nacos服务 <a class="header-anchor" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8nacos%E6%9C%8D%E5%8A%A1">#</a></h3>
+<p>地址为：127.0.0.1:8848</p>
+<h3 id="%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8redis%E6%9C%8D%E5%8A%A1">安装并启动redis服务 <a class="header-anchor" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8redis%E6%9C%8D%E5%8A%A1">#</a></h3>
+<p>地址为：127.0.0.1:6379</p>
+<h3 id="%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8mysql%E6%9C%8D%E5%8A%A1">安装并启动mysql服务 <a class="header-anchor" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8mysql%E6%9C%8D%E5%8A%A1">#</a></h3>
+<p>地址为：127.0.0.1:3306</p>
 <h3 id="%E5%88%9D%E5%A7%8B%E5%8C%96quartz%E6%95%B0%E6%8D%AE%E5%BA%93">初始化quartz数据库 <a class="header-anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96quartz%E6%95%B0%E6%8D%AE%E5%BA%93">#</a></h3>
-<p>在192.168.108.179创建数据库
-这里使用mysql数据库，最新脚本请<a href="https://github.com/changmingxie/tcc-transaction/blob/master-2.x/tcc-transaction-server/src/main/dbscripts/db_init.sql">查看</a></p>
-<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span>
-<span class="hljs-keyword">DATABASE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`TCC_SERVER`</span> <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-string">'utf8mb4'</span> <span class="hljs-keyword">COLLATE</span> <span class="hljs-string">'utf8mb4_unicode_ci'</span>;
-
-<span class="hljs-keyword">USE</span>
-<span class="hljs-string">`TCC_SERVER`</span>;
-
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_FIRED_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_PAUSED_TRIGGER_GRPS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_SCHEDULER_STATE;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_LOCKS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_SIMPLE_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_SIMPROP_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_CRON_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_BLOB_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_TRIGGERS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_JOB_DETAILS;
-<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> QRTZ_CALENDARS;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_JOB_DETAILS
-(
-    SCHED_NAME        <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_NAME          <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_GROUP         <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    DESCRIPTION       <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">250</span>) <span class="hljs-literal">NULL</span>,
-    JOB_CLASS_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">250</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    IS_DURABLE        <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>)   <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    IS_NONCONCURRENT  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>)   <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    IS_UPDATE_DATA    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>)   <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    REQUESTS_RECOVERY <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>)   <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_DATA          <span class="hljs-built_in">BLOB</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, JOB_NAME, JOB_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_TRIGGERS
-(
-    SCHED_NAME     <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_NAME       <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_GROUP      <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    DESCRIPTION    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">250</span>) <span class="hljs-literal">NULL</span>,
-    NEXT_FIRE_TIME <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-literal">NULL</span>,
-    PREV_FIRE_TIME <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-literal">NULL</span>,
-    <span class="hljs-keyword">PRIORITY</span>       <span class="hljs-built_in">INTEGER</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_STATE  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_TYPE   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">8</span>)   <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    START_TIME     <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    END_TIME       <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-literal">NULL</span>,
-    CALENDAR_NAME  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-literal">NULL</span>,
-    MISFIRE_INSTR  <span class="hljs-built_in">SMALLINT</span>(<span class="hljs-number">2</span>) <span class="hljs-literal">NULL</span>,
-    JOB_DATA       <span class="hljs-built_in">BLOB</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (SCHED_NAME, JOB_NAME, JOB_GROUP)
-        <span class="hljs-keyword">REFERENCES</span> QRTZ_JOB_DETAILS (SCHED_NAME, JOB_NAME, JOB_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_SIMPLE_TRIGGERS
-(
-    SCHED_NAME      <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    REPEAT_COUNT    <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">7</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    REPEAT_INTERVAL <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">12</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TIMES_TRIGGERED <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-        <span class="hljs-keyword">REFERENCES</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_CRON_TRIGGERS
-(
-    SCHED_NAME      <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    CRON_EXPRESSION <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TIME_ZONE_ID    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">80</span>),
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-        <span class="hljs-keyword">REFERENCES</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_SIMPROP_TRIGGERS
-(
-    SCHED_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    STR_PROP_1    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">512</span>) <span class="hljs-literal">NULL</span>,
-    STR_PROP_2    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">512</span>) <span class="hljs-literal">NULL</span>,
-    STR_PROP_3    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">512</span>) <span class="hljs-literal">NULL</span>,
-    INT_PROP_1    <span class="hljs-built_in">INT</span> <span class="hljs-literal">NULL</span>,
-    INT_PROP_2    <span class="hljs-built_in">INT</span> <span class="hljs-literal">NULL</span>,
-    LONG_PROP_1   <span class="hljs-built_in">BIGINT</span> <span class="hljs-literal">NULL</span>,
-    LONG_PROP_2   <span class="hljs-built_in">BIGINT</span> <span class="hljs-literal">NULL</span>,
-    DEC_PROP_1    <span class="hljs-built_in">NUMERIC</span>(<span class="hljs-number">13</span>, <span class="hljs-number">4</span>) <span class="hljs-literal">NULL</span>,
-    DEC_PROP_2    <span class="hljs-built_in">NUMERIC</span>(<span class="hljs-number">13</span>, <span class="hljs-number">4</span>) <span class="hljs-literal">NULL</span>,
-    BOOL_PROP_1   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>) <span class="hljs-literal">NULL</span>,
-    BOOL_PROP_2   <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>) <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-        <span class="hljs-keyword">REFERENCES</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_BLOB_TRIGGERS
-(
-    SCHED_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    BLOB_DATA     <span class="hljs-built_in">BLOB</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">INDEX</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
-    <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-        <span class="hljs-keyword">REFERENCES</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_CALENDARS
-(
-    SCHED_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    CALENDAR_NAME <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    CALENDAR      <span class="hljs-built_in">BLOB</span>         <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, CALENDAR_NAME)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_PAUSED_TRIGGER_GRPS
-(
-    SCHED_NAME    <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, TRIGGER_GROUP)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_FIRED_TRIGGERS
-(
-    SCHED_NAME        <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    ENTRY_ID          <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">95</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_NAME      <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    TRIGGER_GROUP     <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    INSTANCE_NAME     <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    FIRED_TIME        <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    SCHED_TIME        <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    <span class="hljs-keyword">PRIORITY</span>          <span class="hljs-built_in">INTEGER</span>      <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    STATE             <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    JOB_NAME          <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-literal">NULL</span>,
-    JOB_GROUP         <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-literal">NULL</span>,
-    IS_NONCONCURRENT  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>) <span class="hljs-literal">NULL</span>,
-    REQUESTS_RECOVERY <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">1</span>) <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, ENTRY_ID)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_SCHEDULER_STATE
-(
-    SCHED_NAME        <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    INSTANCE_NAME     <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">190</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    LAST_CHECKIN_TIME <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    CHECKIN_INTERVAL  <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">13</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, INSTANCE_NAME)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> QRTZ_LOCKS
-(
-    SCHED_NAME <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">120</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    LOCK_NAME  <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">40</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
-    PRIMARY <span class="hljs-keyword">KEY</span> (SCHED_NAME, LOCK_NAME)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_J_REQ_RECOVERY <span class="hljs-keyword">ON</span> QRTZ_JOB_DETAILS (SCHED_NAME, REQUESTS_RECOVERY);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_J_GRP <span class="hljs-keyword">ON</span> QRTZ_JOB_DETAILS (SCHED_NAME, JOB_GROUP);
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_J <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, JOB_NAME, JOB_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_JG <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, JOB_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_C <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, CALENDAR_NAME);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_G <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_STATE <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_STATE);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_N_STATE <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP, TRIGGER_STATE);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_N_G_STATE <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_GROUP, TRIGGER_STATE);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_NEXT_FIRE_TIME <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, NEXT_FIRE_TIME);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_NFT_ST <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_STATE, NEXT_FIRE_TIME);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_NFT_MISFIRE <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_NFT_ST_MISFIRE <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME, TRIGGER_STATE);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_T_NFT_ST_MISFIRE_GRP <span class="hljs-keyword">ON</span> QRTZ_TRIGGERS (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME, TRIGGER_GROUP,
-                                                             TRIGGER_STATE);
-
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_TRIG_INST_NAME <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, INSTANCE_NAME);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_INST_JOB_REQ_RCVRY <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, INSTANCE_NAME, REQUESTS_RECOVERY);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_J_G <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, JOB_NAME, JOB_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_JG <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, JOB_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_T_G <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP);
-<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> IDX_QRTZ_FT_TG <span class="hljs-keyword">ON</span> QRTZ_FIRED_TRIGGERS (SCHED_NAME, TRIGGER_GROUP);
-
-<span class="hljs-keyword">commit</span>;
-
-</code></pre>
-<h3 id="%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0release%E7%89%88%E6%9C%AC">下载最新<a href="https://github.com/changmingxie/tcc-transaction/releases">RELEASE</a>版本 <a class="header-anchor" href="#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0release%E7%89%88%E6%9C%AC">#</a></h3>
-<p>下载最新的安装包tcc-transaction-server-xxx.tar.gz</p>
+<p>这里使用mysql数据库，脚本请<a href="https://github.com/changmingxie/aggregate-framework/blob/master-4.x/aggregate-framework-server/src/main/dbscripts/db_init.sql">查看</a></p>
+<h3 id="%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0release%E7%89%88%E6%9C%AC">下载最新<a href="https://github.com/changmingxie/aggregate-framework/releases">RELEASE</a>版本 <a class="header-anchor" href="#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0release%E7%89%88%E6%9C%AC">#</a></h3>
+<p>下载最新的安装包aggregate-framework-server-xxx.tar.gz</p>
 <h2 id="%E5%AE%9E%E4%BE%8B1%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8">实例1安装并启动 <a class="header-anchor" href="#%E5%AE%9E%E4%BE%8B1%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8">#</a></h2>
 <h3 id="%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%88%9B%E5%BB%BAserver%E7%9B%AE%E5%BD%95%E5%B9%B6%E8%A7%A3%E5%8E%8B">第一步 创建server目录并解压 <a class="header-anchor" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%88%9B%E5%BB%BAserver%E7%9B%AE%E5%BD%95%E5%B9%B6%E8%A7%A3%E5%8E%8B">#</a></h3>
-<pre><code class="language-shell"><span class="hljs-meta">%</span><span class="bash"> makdir server </span>
-<span class="hljs-meta">%</span><span class="bash"> <span class="hljs-built_in">cd</span>  server  </span>
-server % tar zxvf tcc-transaction-server-2.0.0.tar.gz
+<p><strong>创建server目录</strong></p>
+<pre><code class="language-shell">makdir server 
+cd  server  
+</code></pre>
+<p><strong>下载aggregate-framework-server-xxx.tar.gz</strong>，解压到server目录</p>
+<pre><code class="language-shell">server % tar zxvf aggregate-framework-server-4.0.0-SNAPSHOT.tar.gz
 x conf/application.yaml
-x lib/tcc-transaction-server.jar
+x lib/aggregate-framework-server.jar
 x conf/
 x conf/logback.xml
 x bin/
@@ -238,37 +49,44 @@ x bin/shutdown.sh
 x bin/shutdown.cmd
 server % tree
 .
+├── aggregate-framework-server-4.0.0-SNAPSHOT.tar.gz
 ├── bin
-│         ├── shutdown.cmd
-│         ├── shutdown.sh
-│         ├── startup.cmd
-│         └── startup.sh
+│   ├── shutdown.cmd
+│   ├── shutdown.sh
+│   ├── startup.cmd
+│   └── startup.sh
 ├── conf
-│         ├── application.yaml
-│         └── logback.xml
-├── lib
-│         └── tcc-transaction-server.jar
-└── tcc-transaction-server-2.0.0.tar.gz
+│   ├── application.yaml
+│   └── logback.xml
+└── lib
+    └── aggregate-framework-server.jar
 
 3 directories, 8 files
 server % 
 </code></pre>
 <h3 id="%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E4%BF%AE%E6%94%B9application.yaml%E9%85%8D%E7%BD%AE">第二步 修改application.yaml配置 <a class="header-anchor" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E4%BF%AE%E6%94%B9application.yaml%E9%85%8D%E7%BD%AE">#</a></h3>
-<p><a href="/zh-cn/docs/tutorial/configurations.html#server%E7%AB%AF">参数说明详见</a><br>
+<p><a href="/zh-cn/aggdocs/tutorial/configurations.html#server%E7%AB%AF">参数说明详见</a><br>
 这里以注册中心[nacos]+存储类型[redis]+任务部署类型[quartz集群模式]为例，对应的application.yaml可如下</p>
 <pre><code class="language-yaml"><span class="hljs-attr">server:</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">12332</span>
+  <span class="hljs-attr">servlet:</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/${spring.application.name}</span>
+
 <span class="hljs-attr">logging:</span>
   <span class="hljs-attr">level:</span>
     <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>
+
 <span class="hljs-attr">spring:</span>
   <span class="hljs-attr">application:</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">tcc-transaction-server</span>
-  <span class="hljs-attr">tcc:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">aggregate-framework-server</span>
+  <span class="hljs-attr">autoconfigure:</span>
+    <span class="hljs-attr">exclude:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration</span>
+  <span class="hljs-attr">agg:</span>
     <span class="hljs-attr">storage:</span>
       <span class="hljs-attr">storage-type:</span> <span class="hljs-string">redis</span>
       <span class="hljs-attr">redis:</span>
-        <span class="hljs-attr">host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.108</span><span class="hljs-number">.179</span>
+        <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
         <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span>
         <span class="hljs-attr">database:</span> <span class="hljs-number">0</span>
         <span class="hljs-attr">pool-config:</span>
@@ -277,34 +95,79 @@ server %
           <span class="hljs-attr">min-idle:</span> <span class="hljs-number">10</span>
           <span class="hljs-attr">max-wait-millis:</span> <span class="hljs-number">300</span>
     <span class="hljs-attr">recovery:</span>
-      <span class="hljs-attr">recovery-enabled:</span> <span class="hljs-literal">true</span>
-      <span class="hljs-attr">update-job-forcibly:</span> <span class="hljs-literal">false</span>
       <span class="hljs-attr">quartz-clustered:</span> <span class="hljs-literal">true</span>
-      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://192.168.108.179:3306/TCC_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
       <span class="hljs-attr">quartz-data-source-driver:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
       <span class="hljs-attr">quartz-data-source-user:</span> <span class="hljs-string">root</span>
-      <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-string">welcome1</span>
+      <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-number">123456</span>
+      <span class="hljs-attr">max-retry-count:</span> <span class="hljs-number">3</span>
     <span class="hljs-attr">registry:</span>
+      <span class="hljs-attr">registry-address:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:2332</span>
+      <span class="hljs-attr">registry-address-for-dashboard:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:12332</span>
       <span class="hljs-attr">registry-type:</span> <span class="hljs-string">nacos</span>
       <span class="hljs-attr">cluster-name:</span> <span class="hljs-string">default</span>
       <span class="hljs-attr">nacos:</span>
-        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.108</span><span class="hljs-number">.179</span><span class="hljs-string">:8848</span>
+        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8848</span>
     <span class="hljs-attr">remoting:</span>
       <span class="hljs-attr">listen-port:</span> <span class="hljs-number">2332</span>
-
 </code></pre>
 <h3 id="%E7%AC%AC%E4%B8%89%E6%AD%A5-%E5%90%AF%E5%8A%A8server">第三步 启动server <a class="header-anchor" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E5%90%AF%E5%8A%A8server">#</a></h3>
-<pre><code class="language-shell">sh bin/startup.sh
+<pre><code class="language-shell">sh bin/startup.sh #执行sh bin/shutdown.sh来停止服务
 </code></pre>
 <h2 id="%E5%AE%9E%E4%BE%8B2%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8">实例2安装并启动 <a class="header-anchor" href="#%E5%AE%9E%E4%BE%8B2%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E5%8A%A8">#</a></h2>
-<p>参考<strong>实例1安装并启动</strong></p>
+<p>参考<strong>实例1安装并启动</strong>
+application.yaml可如下</p>
+<pre><code class="language-yaml"><span class="hljs-attr">server:</span>
+  <span class="hljs-attr">port:</span> <span class="hljs-number">12333</span>
+  <span class="hljs-attr">servlet:</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/${spring.application.name}</span>
+
+<span class="hljs-attr">logging:</span>
+  <span class="hljs-attr">level:</span>
+    <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>
+
+<span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">application:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">aggregate-framework-server</span>
+  <span class="hljs-attr">autoconfigure:</span>
+    <span class="hljs-attr">exclude:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration</span>
+  <span class="hljs-attr">agg:</span>
+    <span class="hljs-attr">storage:</span>
+      <span class="hljs-attr">storage-type:</span> <span class="hljs-string">redis</span>
+      <span class="hljs-attr">redis:</span>
+        <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+        <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span>
+        <span class="hljs-attr">database:</span> <span class="hljs-number">0</span>
+        <span class="hljs-attr">pool-config:</span>
+          <span class="hljs-attr">max-total:</span> <span class="hljs-number">100</span>
+          <span class="hljs-attr">max-idle:</span> <span class="hljs-number">100</span>
+          <span class="hljs-attr">min-idle:</span> <span class="hljs-number">10</span>
+          <span class="hljs-attr">max-wait-millis:</span> <span class="hljs-number">300</span>
+    <span class="hljs-attr">recovery:</span>
+      <span class="hljs-attr">quartz-clustered:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="hljs-attr">quartz-data-source-driver:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
+      <span class="hljs-attr">quartz-data-source-user:</span> <span class="hljs-string">root</span>
+      <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-number">123456</span>
+      <span class="hljs-attr">max-retry-count:</span> <span class="hljs-number">3</span>
+    <span class="hljs-attr">registry:</span>
+      <span class="hljs-attr">registry-address:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:2333</span>
+      <span class="hljs-attr">registry-address-for-dashboard:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:12333</span>
+      <span class="hljs-attr">registry-type:</span> <span class="hljs-string">nacos</span>
+      <span class="hljs-attr">cluster-name:</span> <span class="hljs-string">default</span>
+      <span class="hljs-attr">nacos:</span>
+        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8848</span>
+    <span class="hljs-attr">remoting:</span>
+      <span class="hljs-attr">listen-port:</span> <span class="hljs-number">2333</span>
+</code></pre>
 <h2 id="%E9%AA%8C%E8%AF%81">验证 <a class="header-anchor" href="#%E9%AA%8C%E8%AF%81">#</a></h2>
 <p>实例1和实例2正常启动后，会在nacos显示如下信息。
-<img src="../../img/nacos_server_list.jpg" alt="nacos服务列表">
+<img src="../../img/nacos_server_list.png" alt="nacos服务列表">
 <strong>netty-server实例注册成功</strong>，见下图
-<img src="../../img/nacos_tcc_server_instances.jpg" alt="netty-server实例">
+<img src="../../img/nacos_agg_server_instances1.png" alt="netty-server实例">
 <strong>web实例注册成功</strong>，见下图
-<img src="../../img/nacos_tcc_transaction_server_instances.jpg" alt="web实例"></p>
+<img src="../../img/nacos_agg_server_instances2.png" alt="web实例"></p>
 <p>恭喜你，server集群模式搭建完成！</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/what-is-tcctransaction.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2022 TCC-TRANSACTION</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>

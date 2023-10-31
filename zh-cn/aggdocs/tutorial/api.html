@@ -18,18 +18,18 @@
 <p>对<strong>PlatformTransactionManager</strong>的getTransaction、commit、rollback方法进行拦截，提供基于乐观锁的并发控制、聚合根维度的事务保证和事件发布等能力。<br>
 注：对于未显示使用@Transactional注解的方法，相关逻辑在执行<strong>AbstractAggregateRepository</strong>的save方法时触发。</p>
 <h3 id="annotationeventlistenerbeanpostprocessor">AnnotationEventListenerBeanPostProcessor <a class="header-anchor" href="#annotationeventlistenerbeanpostprocessor">#</a></h3>
-<p>应用启动时，通过该类将方法上含有@EventHandler注解的bean封装成<strong>EventListener</strong>，注册到<strong>SimpleEventBus</strong>作为事件的订阅者</p>
+<p>应用启动时，通过该类将方法上含有@EventHandler注解的bean封装成<strong>EventListener</strong>，注册到<strong>SimpleEventBus</strong>作为事件的订阅者。</p>
 <h3 id="abstractsimpleaggregateroot">AbstractSimpleAggregateRoot <a class="header-anchor" href="#abstractsimpleaggregateroot">#</a></h3>
 <p>聚合根对象所需继承的父类，说明：<br>
-1.可通过实现CompositeId接口创建复合主键(适用于分库分表的场景)<br>
-2.可利用@DaoAwareQuery注解实现聚合根与领域对象之间的关联关系
-3.可通过apply方法来发布事件</p>
+1.可通过实现CompositeId接口创建复合主键(适用于分库分表的场景)。<br>
+2.可利用@DaoAwareQuery注解实现聚合根与领域对象之间的关联关系。<br>
+3.可通过apply方法来发布事件。</p>
 <h3 id="abstractsimpledomainobject">AbstractSimpleDomainObject <a class="header-anchor" href="#abstractsimpledomainobject">#</a></h3>
-<p>领域对象所需继承的父类</p>
+<p>领域对象所需继承的父类。</p>
 <h3 id="aggregaterootdao%E3%80%81collectiveaggregaterootdao">AggregateRootDao、CollectiveAggregateRootDao <a class="header-anchor" href="#aggregaterootdao%E3%80%81collectiveaggregaterootdao">#</a></h3>
-<p>聚合根的DAO所需实现的接口，在CollectiveAggregateRootDao额外定义了批量操作的方法</p>
+<p>聚合根的DAO所需实现的接口，在CollectiveAggregateRootDao额外定义了批量操作的方法。</p>
 <h3 id="domainobjectdao%E3%80%81collectivedomainobjectdao">DomainObjectDao、CollectiveDomainObjectDao <a class="header-anchor" href="#domainobjectdao%E3%80%81collectivedomainobjectdao">#</a></h3>
-<p>领域对象的DAO所需实现的接口，在CollectiveDomainObjectDao额外定义了批量操作的方法</p>
+<p>领域对象的DAO所需实现的接口，在CollectiveDomainObjectDao额外定义了批量操作的方法。</p>
 <h3 id="daoawareaggregaterepository">DaoAwareAggregateRepository <a class="header-anchor" href="#daoawareaggregaterepository">#</a></h3>
 <p>聚合根的Repository所需继承的父类，实现了对聚合根及其附属领域对象的增、删、改、查操作。</p>
 <p>使用示例:</p>
@@ -238,7 +238,7 @@
 <h2 id="%E6%A0%B8%E5%BF%83%E6%B3%A8%E8%A7%A3">核心注解 <a class="header-anchor" href="#%E6%A0%B8%E5%BF%83%E6%B3%A8%E8%A7%A3">#</a></h2>
 <h3 id="%40eventhandler">@EventHandler <a class="header-anchor" href="#%40eventhandler">#</a></h3>
 <p>此注解作用于方法上，表明使用该方法作为事件处理器，<a href="/zh-cn/aggdocs/tutorial/eventhandler.html">详见</a>。方法的入参有且仅有一个，是所需处理的事件类型（也可以是集合）。<strong>特别注意</strong>：1.可以为一个事件绑定多个事件处理器，彼此相互独立。2.事件处理器所在的类需要被注册到spring容器中。<br>
-<strong>属性说明</strong></p>
+<strong>属性说明：</strong></p>
 <table>
 <thead>
 <tr>
@@ -288,8 +288,8 @@
 </tbody>
 </table>
 <h3 id="%40asyncconfig">@AsyncConfig <a class="header-anchor" href="#%40asyncconfig">#</a></h3>
-<p>AGG内部集成了<a href="https://lmax-exchange.github.io/disruptor/">Disruptor</a>框架，用于提升异步事件的处理性能，此注解用于设置其相关配置<br>
-<strong>属性说明</strong></p>
+<p>AGG内部集成了<a href="https://lmax-exchange.github.io/disruptor/">Disruptor</a>框架，用于提升异步事件的处理性能，此注解用于设置其相关配置。<br>
+<strong>属性说明：</strong></p>
 <table>
 <thead>
 <tr>

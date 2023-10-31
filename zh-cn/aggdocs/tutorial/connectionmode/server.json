@@ -1,6 +1,6 @@
 {
   "filename": "server.md",
-  "__html": "<h1 id=\"server%E6%A8%A1%E5%BC%8F\">server模式 <a class=\"header-anchor\" href=\"#server%E6%A8%A1%E5%BC%8F\">#</a></h1>\n<p>aggregate-framework-4.x版本新增此模式，此模式将事件存储及补偿的相关操作，交由一个server服务来执行，此服务实现了事件存储、补偿任务的集中管理。<br>\n简化了先前版本中存储和补偿任务的复杂配置。给开发者带来一种新的选择。</p>\n<h2 id=\"%E6%9E%B6%E6%9E%84\">架构 <a class=\"header-anchor\" href=\"#%E6%9E%B6%E6%9E%84\">#</a></h2>\n<p><img src=\"../../img/server_mode.jpeg\" alt=\"server模式架构图\"></p>\n",
+  "__html": "<h1 id=\"server%E6%A8%A1%E5%BC%8F\">server模式 <a class=\"header-anchor\" href=\"#server%E6%A8%A1%E5%BC%8F\">#</a></h1>\n<p>aggregate-framework-4.x版本新增模式，此模式将事件存储及补偿的相关操作，交由一个server服务来执行，该服务实现了事件存储、补偿任务的集中管理。<br>\n简化了先前版本中存储和补偿任务的复杂配置。给开发者带来一种新的选择。</p>\n<h2 id=\"%E6%9E%B6%E6%9E%84\">架构 <a class=\"header-anchor\" href=\"#%E6%9E%B6%E6%9E%84\">#</a></h2>\n<p><img src=\"../../img/server_mode.jpeg\" alt=\"server模式架构图\"></p>\n",
   "link": "/zh-cn/aggdocs/tutorial/connectionmode/server.html",
   "meta": {}
 }

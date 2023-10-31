@@ -6,7 +6,7 @@
 
 可以通过在方法上添加[@EventHandler](/zh-cn/aggdocs/tutorial/api.html#%40EventHandler)来创建事件处理器。方法的入参有且仅有一个，是所需处理的事件类型（也可以是集合）。  
 
-## 使用示例：
+## 使用示例
 ```java
 @Component
 @Slf4j

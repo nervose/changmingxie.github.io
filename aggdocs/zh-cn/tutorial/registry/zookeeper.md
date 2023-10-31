@@ -5,9 +5,7 @@
 ```properties
 spring.agg.registry.registryType=zookeeper
 spring.agg.registry.zookeeper.connectString=127.0.0.1:2181
-
 ```
-
 
 ## maven依赖
 需要引入相关依赖

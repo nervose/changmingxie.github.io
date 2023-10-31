@@ -7,22 +7,22 @@
 注：对于未显示使用@Transactional注解的方法，相关逻辑在执行**AbstractAggregateRepository**的save方法时触发。  
 
 ### AnnotationEventListenerBeanPostProcessor
-应用启动时，通过该类将方法上含有@EventHandler注解的bean封装成**EventListener**，注册到**SimpleEventBus**作为事件的订阅者
+应用启动时，通过该类将方法上含有@EventHandler注解的bean封装成**EventListener**，注册到**SimpleEventBus**作为事件的订阅者。
 
 ### AbstractSimpleAggregateRoot
 聚合根对象所需继承的父类，说明：  
-1.可通过实现CompositeId接口创建复合主键(适用于分库分表的场景)  
-2.可利用@DaoAwareQuery注解实现聚合根与领域对象之间的关联关系
-3.可通过apply方法来发布事件  
+1.可通过实现CompositeId接口创建复合主键(适用于分库分表的场景)。  
+2.可利用@DaoAwareQuery注解实现聚合根与领域对象之间的关联关系。  
+3.可通过apply方法来发布事件。  
 
 ### AbstractSimpleDomainObject
-领域对象所需继承的父类
+领域对象所需继承的父类。
 
 ### AggregateRootDao、CollectiveAggregateRootDao
-聚合根的DAO所需实现的接口，在CollectiveAggregateRootDao额外定义了批量操作的方法
+聚合根的DAO所需实现的接口，在CollectiveAggregateRootDao额外定义了批量操作的方法。
 
 ### DomainObjectDao、CollectiveDomainObjectDao
-领域对象的DAO所需实现的接口，在CollectiveDomainObjectDao额外定义了批量操作的方法
+领域对象的DAO所需实现的接口，在CollectiveDomainObjectDao额外定义了批量操作的方法。
 
 ### DaoAwareAggregateRepository
 聚合根的Repository所需继承的父类，实现了对聚合根及其附属领域对象的增、删、改、查操作。
@@ -238,7 +238,7 @@ SubAccountMapper.xml
 
 ### @EventHandler
 此注解作用于方法上，表明使用该方法作为事件处理器，[详见](/zh-cn/aggdocs/tutorial/eventhandler.html)。方法的入参有且仅有一个，是所需处理的事件类型（也可以是集合）。**特别注意**：1.可以为一个事件绑定多个事件处理器，彼此相互独立。2.事件处理器所在的类需要被注册到spring容器中。  
-**属性说明**
+**属性说明：**
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|默认值|
 |:------|:------|:------|:-----------|:-----------------|
 | asynchronous | 是否异步执行 | boolean | false |
@@ -249,8 +249,8 @@ SubAccountMapper.xml
 | order| 异步confirm |boolean | Integer.MIN_VALUE(最先执行) |
 
 ### @AsyncConfig
-AGG内部集成了[Disruptor](https://lmax-exchange.github.io/disruptor/)框架，用于提升异步事件的处理性能，此注解用于设置其相关配置  
-**属性说明**
+AGG内部集成了[Disruptor](https://lmax-exchange.github.io/disruptor/)框架，用于提升异步事件的处理性能，此注解用于设置其相关配置。  
+**属性说明：**
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|默认值|
 |:------|:------|:------|:-----------|:-----------------|
 | queueFullPolicy | 环形队列打满时的处理策略 | 枚举，可取值：DISCARD直接丢弃、ENQUEUE等待入队、SYNCHRONOUS使用当前线程执行 | SYNCHRONOUS |

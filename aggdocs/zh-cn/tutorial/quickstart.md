@@ -337,7 +337,7 @@ public class AccountRepository extends DaoAwareAggregateRepository<Account,Long>
 
 ```
 
-5.新建event目录，添加事件和事件处理器
+5.新建event目录，添加事件和事件处理器  
 AccountCreateEvent.class
 ```java
 package org.aggregateframework.basic.usage.event;
