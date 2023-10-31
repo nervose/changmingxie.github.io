@@ -4,10 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="keywords" content="deploy" />
-	<meta name="description" content="deploy" />
+	<meta name="keywords" content="deploy-server" />
+	<meta name="description" content="deploy-server" />
 	<!-- 网页标签标题 -->
-	<title>deploy</title>
+	<title>deploy-server</title>
 	<link rel="shortcut icon" href="/img/tcc_logo.png"/>
 	<link rel="stylesheet" href="/build/aggDocumentation.css" />
 </head>
@@ -25,10 +25,10 @@
 <pre><code class="language-shell">makdir dashboard 
 cd  dashboard  
 </code></pre>
-<p><strong>下载tcc-transaction-dashboard-xxx.tar.gz</strong>，解压到dashboard目录</p>
-<pre><code class="language-shell">dashboard % tar zxvf tcc-transaction-dashboard-2.0.0.tar.gz 
+<p><strong>下载aggregate-framework-dashboard-xxx.tar.gz</strong>，解压到dashboard目录</p>
+<pre><code class="language-shell">dashboard % tar zxvf aggregate-framework-dashboard-4.0.0-SNAPSHOT.tar.gz
 x conf/application.yaml
-x lib/tcc-transaction-dashboard.jar
+x lib/aggregate-framework-dashboard.jar
 x conf/
 x conf/logback.xml
 x bin/
@@ -38,33 +38,33 @@ x bin/shutdown.sh
 x bin/shutdown.cmd
 dashboard % tree
 .
+├── aggregate-framework-dashboard-4.0.0-SNAPSHOT.tar.gz
 ├── bin
-│         ├── shutdown.cmd
-│         ├── shutdown.sh
-│         ├── startup.cmd
-│         └── startup.sh
+│   ├── shutdown.cmd
+│   ├── shutdown.sh
+│   ├── startup.cmd
+│   └── startup.sh
 ├── conf
-│         ├── application.yaml
-│         └── logback.xml
-├── lib
-│         └── tcc-transaction-dashboard.jar
-└── tcc-transaction-dashboard-2.0.0.tar.gz
+│   ├── application.yaml
+│   └── logback.xml
+└── lib
+    └── aggregate-framework-dashboard.jar
 
 3 directories, 8 files
 dashboard % 
 </code></pre>
-<p>conf/application.yaml配置<a href="/zh-cn/docs/tutorial/configurations.html#dashbaord">详见</a></p>
+<p>conf/application.yaml配置<a href="/zh-cn/aggdocs/tutorial/configurations.html#dashbaord">详见</a></p>
 <p><strong>启动dashboard</strong></p>
 <pre><code class="language-shell">sh bin/startup.sh
 </code></pre>
 <h3 id="windows%E7%8E%AF%E5%A2%83">windows环境 <a class="header-anchor" href="#windows%E7%8E%AF%E5%A2%83">#</a></h3>
 <p>创建dashboard目录
-下载tcc-transaction-dashboard-xxx.zip，到dashboard目录，并解压
+下载aggregate-framework-dashboard-xxx.zip，到dashboard目录，并解压
 双击bin/startup.cmd，启动dashboard</p>
 <h3 id="%E6%89%93%E5%BC%80dashbaord">打开dashbaord <a class="header-anchor" href="#%E6%89%93%E5%BC%80dashbaord">#</a></h3>
-<p>默认地址为：<a href="http://localhost:22332/tcc-transaction-dashboard">http://localhost:22332/tcc-transaction-dashboard</a><br>
+<p>默认地址为：<a href="http://localhost:22332/aggregate-framework-dashboard">http://localhost:22332/aggregate-framework-dashboard</a>
 默认用户名密码: admin/123456
-<img src="../../img/dashboard/tcc_dashboard_not_login.jpg" alt="首页"></p>
+<img src="../../img/dashboard/welcome.png" alt="首页"></p>
 <h2 id="%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83">注册中心 <a class="header-anchor" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83">#</a></h2>
 <p>server模式下，需要和server服务交互。<br>
 <strong>注意</strong>: dashboard选择nacos或者zookeeper注册中心，前提是server端以对应的注册中心来暴露。<br>
@@ -78,7 +78,7 @@ dashboard %
 <p>application.yaml可如下配置</p>
 <pre><code class="language-yaml"><span class="hljs-attr">server:</span>
   <span class="hljs-attr">servlet:</span>
-    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/tcc-transaction-dashboard</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/aggregate-framework-dashboard</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">22332</span>
 
 <span class="hljs-attr">logging:</span>
@@ -86,30 +86,44 @@ dashboard %
     <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>
 <span class="hljs-attr">spring:</span>
   <span class="hljs-attr">application:</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">tcc-transaction-dashboard</span>
-  <span class="hljs-attr">tcc:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">aggregate-framework-dashboard</span>
+  <span class="hljs-attr">resources:</span>
+    <span class="hljs-attr">static-locations:</span> <span class="hljs-string">classpath:templates/</span>
+    <span class="hljs-attr">chain:</span>
+      <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">freemarker:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">charset:</span> <span class="hljs-string">UTF-8</span>
+    <span class="hljs-attr">suffix:</span> <span class="hljs-string">.html</span>
+    <span class="hljs-attr">check-template-location:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">template-loader-path:</span> <span class="hljs-string">classpath:/templates/</span>
+  <span class="hljs-attr">agg:</span>
     <span class="hljs-attr">dashboard:</span>
       <span class="hljs-attr">userName:</span> <span class="hljs-string">admin</span>
       <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span>
       <span class="hljs-attr">connection-mode:</span> <span class="hljs-string">server</span>
-      <span class="hljs-attr">registry:</span> <span class="hljs-comment"># connection-mode为server时使用</span>
-        <span class="hljs-attr">registry-type:</span> <span class="hljs-string">direct</span>
-        <span class="hljs-attr">direct:</span>
-          <span class="hljs-attr">server-addresses:</span> <span class="hljs-string">http://localhost:12332</span>
+    <span class="hljs-attr">registry:</span>
+      <span class="hljs-attr">registry-type:</span> <span class="hljs-string">direct</span>
+      <span class="hljs-attr">registry-role:</span> <span class="hljs-string">dashboard</span>
+      <span class="hljs-attr">direct:</span>
+        <span class="hljs-attr">addresses-for-dashboard:</span> <span class="hljs-string">localhost:12332</span>
     <span class="hljs-attr">recovery:</span>
+      <span class="hljs-attr">recovery-enabled:</span> <span class="hljs-literal">false</span>
       <span class="hljs-attr">quartz-clustered:</span> <span class="hljs-literal">true</span>
-      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/TCC_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
       <span class="hljs-attr">quartz-data-source-driver:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
       <span class="hljs-attr">quartz-data-source-user:</span> <span class="hljs-string">root</span>
       <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-string">welcome1</span>
-
+<span class="hljs-attr">feign:</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">/aggregate-framework-server</span>
 </code></pre>
 <h3 id="nacos">nacos <a class="header-anchor" href="#nacos">#</a></h3>
 <p>需要<a href="https://nacos.io/zh-cn/docs/deployment.html">安装nacos</a><br>
 application.yaml可如下配置</p>
 <pre><code class="language-yaml"><span class="hljs-attr">server:</span>
   <span class="hljs-attr">servlet:</span>
-    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/tcc-transaction-dashboard</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/aggregate-framework-dashboard</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">22332</span>
 
 <span class="hljs-attr">logging:</span>
@@ -117,30 +131,44 @@ application.yaml可如下配置</p>
     <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>
 <span class="hljs-attr">spring:</span>
   <span class="hljs-attr">application:</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">tcc-transaction-dashboard</span>
-  <span class="hljs-attr">tcc:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">aggregate-framework-dashboard</span>
+  <span class="hljs-attr">resources:</span>
+    <span class="hljs-attr">static-locations:</span> <span class="hljs-string">classpath:templates/</span>
+    <span class="hljs-attr">chain:</span>
+      <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">freemarker:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">charset:</span> <span class="hljs-string">UTF-8</span>
+    <span class="hljs-attr">suffix:</span> <span class="hljs-string">.html</span>
+    <span class="hljs-attr">check-template-location:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">template-loader-path:</span> <span class="hljs-string">classpath:/templates/</span>
+  <span class="hljs-attr">agg:</span>
     <span class="hljs-attr">dashboard:</span>
       <span class="hljs-attr">userName:</span> <span class="hljs-string">admin</span>
       <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span>
       <span class="hljs-attr">connection-mode:</span> <span class="hljs-string">server</span>
-      <span class="hljs-attr">registry:</span> <span class="hljs-comment"># connection-mode为server时使用</span>
-        <span class="hljs-attr">registry-type:</span> <span class="hljs-string">nacos</span>
-        <span class="hljs-attr">nacos:</span>
-          <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span>
+    <span class="hljs-attr">registry:</span>
+      <span class="hljs-attr">registry-type:</span> <span class="hljs-string">nacos</span>
+      <span class="hljs-attr">registry-role:</span> <span class="hljs-string">dashboard</span>
+      <span class="hljs-attr">nacos:</span>
+        <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span>
     <span class="hljs-attr">recovery:</span>
+      <span class="hljs-attr">recovery-enabled:</span> <span class="hljs-literal">false</span>
       <span class="hljs-attr">quartz-clustered:</span> <span class="hljs-literal">true</span>
-      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/TCC_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
       <span class="hljs-attr">quartz-data-source-driver:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
       <span class="hljs-attr">quartz-data-source-user:</span> <span class="hljs-string">root</span>
       <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-string">welcome1</span>
-
+<span class="hljs-attr">feign:</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">/aggregate-framework-server</span>
 </code></pre>
 <h3 id="zookeeper">zookeeper <a class="header-anchor" href="#zookeeper">#</a></h3>
 <p>需要安装zookeeper<br>
 application.yaml可如下配置</p>
 <pre><code class="language-yaml"><span class="hljs-attr">server:</span>
   <span class="hljs-attr">servlet:</span>
-    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/tcc-transaction-dashboard</span>
+    <span class="hljs-attr">context-path:</span> <span class="hljs-string">/aggregate-framework-dashboard</span>
   <span class="hljs-attr">port:</span> <span class="hljs-number">22332</span>
 
 <span class="hljs-attr">logging:</span>
@@ -148,23 +176,37 @@ application.yaml可如下配置</p>
     <span class="hljs-attr">root:</span> <span class="hljs-string">info</span>
 <span class="hljs-attr">spring:</span>
   <span class="hljs-attr">application:</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">tcc-transaction-dashboard</span>
-  <span class="hljs-attr">tcc:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">aggregate-framework-dashboard</span>
+  <span class="hljs-attr">resources:</span>
+    <span class="hljs-attr">static-locations:</span> <span class="hljs-string">classpath:templates/</span>
+    <span class="hljs-attr">chain:</span>
+      <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">freemarker:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">cache:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">charset:</span> <span class="hljs-string">UTF-8</span>
+    <span class="hljs-attr">suffix:</span> <span class="hljs-string">.html</span>
+    <span class="hljs-attr">check-template-location:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">template-loader-path:</span> <span class="hljs-string">classpath:/templates/</span>
+  <span class="hljs-attr">agg:</span>
     <span class="hljs-attr">dashboard:</span>
       <span class="hljs-attr">userName:</span> <span class="hljs-string">admin</span>
       <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span>
       <span class="hljs-attr">connection-mode:</span> <span class="hljs-string">server</span>
-      <span class="hljs-attr">registry:</span> <span class="hljs-comment"># connection-mode为server时使用</span>
-        <span class="hljs-attr">registry-type:</span> <span class="hljs-string">zookeeper</span>
-        <span class="hljs-attr">zookeeper:</span>
-          <span class="hljs-attr">connect-string:</span> <span class="hljs-string">localhost:2181</span>
+    <span class="hljs-attr">registry:</span>
+      <span class="hljs-attr">registry-type:</span> <span class="hljs-string">zookeeper</span>
+      <span class="hljs-attr">registry-role:</span> <span class="hljs-string">dashboard</span>
+      <span class="hljs-attr">zookeeper:</span>
+        <span class="hljs-attr">connect-string:</span> <span class="hljs-string">localhost:2181</span>
     <span class="hljs-attr">recovery:</span>
+      <span class="hljs-attr">recovery-enabled:</span> <span class="hljs-literal">false</span>
       <span class="hljs-attr">quartz-clustered:</span> <span class="hljs-literal">true</span>
-      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/TCC_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+      <span class="hljs-attr">quartz-data-source-url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/AGG_SERVER?useSSL=false&amp;allowPublicKeyRetrieval=true</span>
       <span class="hljs-attr">quartz-data-source-driver:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
       <span class="hljs-attr">quartz-data-source-user:</span> <span class="hljs-string">root</span>
       <span class="hljs-attr">quartz-data-source-password:</span> <span class="hljs-string">welcome1</span>
-
+<span class="hljs-attr">feign:</span>
+  <span class="hljs-attr">path:</span> <span class="hljs-string">/aggregate-framework-server</span>
 </code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>TCC-TRANSACTION是一款开源的微服务架构下的TCC型分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/what-is-tcctransaction.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/tutorial/quickstart.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2022 TCC-TRANSACTION</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>

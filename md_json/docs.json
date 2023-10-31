@@ -241,8 +241,13 @@
       "meta": {}
     },
     {
-      "filename": "deploy.md",
-      "link": "/zh-cn/aggdocs/ops/dashboard/deploy.html",
+      "filename": "deploy-embedded.md",
+      "link": "/zh-cn/aggdocs/ops/dashboard/deploy-embedded.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy-server.md",
+      "link": "/zh-cn/aggdocs/ops/dashboard/deploy-server.html",
       "meta": {}
     },
     {
@@ -251,8 +256,13 @@
       "meta": {}
     },
     {
-      "filename": "deploy.md",
-      "link": "/zh-cn/aggdocs/ops/server/deploy.html",
+      "filename": "deploy-alone.md",
+      "link": "/zh-cn/aggdocs/ops/server/deploy-alone.html",
+      "meta": {}
+    },
+    {
+      "filename": "deploy-cluster.md",
+      "link": "/zh-cn/aggdocs/ops/server/deploy-cluster.html",
       "meta": {}
     },
     {

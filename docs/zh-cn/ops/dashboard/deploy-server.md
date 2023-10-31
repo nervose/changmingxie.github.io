@@ -50,9 +50,10 @@ conf/application.yaml配置[详见](/zh-cn/docs/tutorial/configurations.html#das
 sh bin/startup.sh
 ```
 ### windows环境  
-创建dashboard目录 
-下载tcc-transaction-dashboard-xxx.zip，到dashboard目录，并解压
-双击bin/startup.cmd，启动dashboard
+- 创建dashboard目录。
+- 下载tcc-transaction-dashboard-xxx.zip，到dashboard目录，并解压。
+- 双击bin/startup.cmd，启动dashboard。
+- 双击bin/shutdown.cmd，停止dashboard。
 
 ### 打开dashbaord
 默认地址为：http://localhost:22332/tcc-transaction-dashboard  

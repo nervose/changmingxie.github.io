@@ -228,7 +228,7 @@ commit;
 makdir server 
 cd  server  
 ```
-**下载tcc-transaction-server-xxx.tar.gz-xxx.tar.gz**，解压到server目录  
+**下载tcc-transaction-server-xxx.tar.gz**，解压到server目录  
 ```shell script
 server % tar zxvf tcc-transaction-server-2.0.0.tar.gz
 x conf/application.yaml
@@ -291,6 +291,6 @@ spring:
 sh bin/startup.sh
 ```
 ### windows环境  
-创建server目录 
-下载tcc-transaction-server-xxx.zip，到server目录，并解压
-双击bin/startup.cmd，启动server
+- 创建server目录。
+- 下载tcc-transaction-server-xxx.zip，到server目录，并解压。
+- 双击bin/startup.cmd，启动server。
