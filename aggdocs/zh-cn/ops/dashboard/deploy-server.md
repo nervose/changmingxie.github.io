@@ -2,7 +2,7 @@
 存储模式为server模式，即通过调用server来实现存储操作。
 另外此模式支持任务管理，需要配置quartz cluster数据库链接
 ## 前置条件
-初始化[quartz数据库脚本](https://github.com/changmingxie/aggregate-framework/tree/master-4.x/aggregate-framework-server/src/main/dbscripts/db_init.sql)  
+初始化[quartz数据库脚本](https://github.com/changmingxie/aggregate-framework/blob/master-4.x/aggregate-framework-server/src/main/dbscripts/db_init.sql)  
 [server部署](/zh-cn/aggdocs/ops/server/index.html)  
 
 ## 安装并部署

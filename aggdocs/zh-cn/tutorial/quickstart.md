@@ -725,7 +725,7 @@ spring:
 ```
 
 ## 功能演示
-至此，准备工作已就绪，在示例中采用了redis来保存事务日志，因此需要在本地启动redis服务。此外，若采用server模式还需要在本地启动mysql服务，并执行以下脚本，用于[quartz框架](https://github.com/quartz-scheduler/quartz)
+至此，准备工作已就绪，在示例中采用了redis来保存事务日志，因此需要在本地启动redis服务。此外，若采用server模式还需要在本地启动mysql服务，并执行以下脚本，用于[quartz框架](https://github.com/quartz-scheduler/quartz)。
 ```sql
 CREATE DATABASE IF NOT EXISTS `AGG_SERVER` CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci';
 

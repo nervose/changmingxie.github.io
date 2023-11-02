@@ -178,7 +178,20 @@ export default {
             link: '/zh-cn/aggdocs/ops/dashboard/dashboard-guild.html',
           },
         ],
-      }
+      },
+      {
+        title: '社区',
+        children: [
+          {
+            title: '社区',
+            link: '/zh-cn/aggdocs/community/community.html',
+          },
+          {
+            title: '开发者',
+            link: '/zh-cn/aggdocs/community/aggregate-framework-dev.html',
+          },
+        ],
+      },
     ],
     barText: 'AGG文档',
   },

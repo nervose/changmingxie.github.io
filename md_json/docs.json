@@ -231,6 +231,24 @@
       "meta": {}
     },
     {
+      "filename": "aggregate-framework-dev.md",
+      "link": "/zh-cn/aggdocs/community/aggregate-framework-dev.html",
+      "meta": {
+        "title": "开发者",
+        "keywords": "开发者",
+        "description": "aggregate-framework 开发者页"
+      }
+    },
+    {
+      "filename": "community.md",
+      "link": "/zh-cn/aggdocs/community/community.html",
+      "meta": {
+        "title": "社区",
+        "keywords": "社区,联系方式",
+        "description": "社区"
+      }
+    },
+    {
       "filename": "faq.md",
       "link": "/zh-cn/aggdocs/faq.html",
       "meta": {}

@@ -8,10 +8,9 @@
 ## 如何使用
 这里以mysql为例。  
 
-### 创建数据
+### 创建数据库表
 这里默认使用数据库名为AGG，开发者可以自行修改。  
-todo  
-最新脚本请[查看](https://github.com/changmingxie/tcc-transaction/blob/master-2.x/tcc-transaction-core/src/main/dbscripts/db.sql)
+最新脚本请[查看](https://github.com/changmingxie/aggregate-framework/blob/master-4.x/aggregate-framework-core/src/main/dbscripts/db.sql)
 ```sql
 CREATE DATABASE IF NOT EXISTS `AGG` CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci';
 
@@ -35,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `AGGREGATE_FRAMEWORK` (
 CREATE TABLE IF NOT EXISTS `AGG_DOMAIN` (
   `ID` bigint NOT NULL AUTO_INCREMENT,
   `DOMAIN` varchar(100) NOT NULL,
+  `MAX_RETRY_COUNT` integer DEFAULT 3,
   `PHONE_NUMBERS` varchar(250),
   `ALERT_TYPE` varchar(10),
   `THRESHOLD` integer DEFAULT 0,
