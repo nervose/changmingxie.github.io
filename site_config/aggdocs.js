@@ -155,8 +155,12 @@ export default {
                 link: '/zh-cn/aggdocs/ops/server/index.html',
               },
               {
-                title: '部署示例',
-                link: '/zh-cn/aggdocs/ops/server/deploy.html',
+                title: '单机部署',
+                link: '/zh-cn/aggdocs/ops/server/deploy-alone.html',
+              },
+              {
+                title: '集群部署',
+                link: '/zh-cn/aggdocs/ops/server/deploy-cluster.html',
               },
             ]
           },
@@ -168,8 +172,12 @@ export default {
                 link: '/zh-cn/aggdocs/ops/dashboard/index.html',
               },
               {
-                title: '部署示例',
-                link: '/zh-cn/aggdocs/ops/dashboard/deploy.html',
+                title: 'embedded模式部署',
+                link: '/zh-cn/aggdocs/ops/dashboard/deploy-embedded.html',
+              },
+              {
+                title: 'server模式部署',
+                link: '/zh-cn/aggdocs/ops/dashboard/deploy-server.html',
               },
             ]
           },
