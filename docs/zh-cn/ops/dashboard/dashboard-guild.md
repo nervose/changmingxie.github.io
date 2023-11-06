@@ -1,4 +1,4 @@
-# dashbord使用手册  
+# dashboard使用手册  
 dashboard，即TCC管理后台，主要功能有：
 - 登录
 - Domain管理  

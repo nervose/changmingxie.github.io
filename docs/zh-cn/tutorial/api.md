@@ -135,7 +135,7 @@ public class InvocationContext implements Serializable {
 ## 核心注解
 
 ### @Compensable
-此注解放在try方法上，用于定义tcc的执行逻辑，即try-confirm-cancel三阶段的实现，**特别注意**：confirm和cancel方法参数要与try保持一致
+此注解放在try方法上，用于定义tcc的执行逻辑，即try-confirm-cancel三阶段的实现，**特别注意**：confirm和cancel方法参数要与try保持一致  
 **属性说明**
 |<div style="width:50px">参数名</div> |<div style="width:200px">含义</div>|类型|可选值|默认值|
 |:------|:------|:------|:-----------|:-----------------|

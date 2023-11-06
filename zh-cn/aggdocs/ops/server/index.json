@@ -1,0 +1,6 @@
+{
+  "filename": "index.md",
+  "__html": "<h1 id=\"server%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E\">server部署说明 <a class=\"header-anchor\" href=\"#server%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E\">#</a></h1>\n<p>server服务，是aggregate-framework-4.x版本新增功能，此服务实现了事件存储、补偿任务的集中管理。<br>\n从而简化了先前版本中存储和补偿任务的复杂配置。给开发者带来一种新的选择。</p>\n<p>server服务同时支持单机部署和集群部署。</p>\n<ul>\n<li><a href=\"/zh-cn/aggdocs/ops/server/deploy-alone.html\">单机部署</a>十分简单，适用于开发、测试环境，可供开发者快速上手体验。</li>\n<li><a href=\"/zh-cn/aggdocs/ops/server/deploy-cluster.html\">集群部署</a>具备高可用、可实时扩缩容的特点，适用于生产环境。</li>\n</ul>\n",
+  "link": "/zh-cn/aggdocs/ops/server/index.html",
+  "meta": {}
+}
